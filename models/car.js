@@ -1,0 +1,1 @@
+//describes each table, columns and datatypes
