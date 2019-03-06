@@ -13,6 +13,13 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 
             }
+        },
+        curCar: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                
+            }
         }
     });
 
