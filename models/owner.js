@@ -1,27 +1,27 @@
 module.exports = function(sequelize, DataTypes) {
-    const Service = sequelize.define("Service", {
-        shop: {
+    const Owner = sequelize.define("Owner", {
+        userEmail: {
             type: DataTypes.STRING,
-            allowNull: true,
-            validate: {
-
-            }
-        },
-        serviceDate: {
-            type: DataTypes.DATE,
             allowNull: false,
             validate: {
 
             }
         },
-        price: {
-            type: DataTypes.FLOAT,
+        insPolicy: {
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
-
+                
+            }
+        },
+        curCar: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                
             }
         }
     });
 
-    return Service;
+    return Owner;
 };
