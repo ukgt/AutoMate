@@ -4,9 +4,15 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "bluebird": "^3.5.3",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
     "express-handlebars": "^3.0.2",
+    "jsonwebtoken": "^8.5.0",
+    "mysql": "^2.16.0",
     "mysql2": "^1.6.5",
+    "node-oauth2-server": "^2.4.0",
     "sequelize": "^4.43.0"
   },
   "devDependencies": {},
