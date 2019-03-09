@@ -3,7 +3,9 @@ const router = express.Router();
 const fuel = require("../models");
 
 router.get("/", function(req, res) {
-  res.render("index", { title: "AutoMate" });
+  res.render("index", {
+    title: "AutoMate"
+  });
 });
 
 router.post("/fuel", function(req, res) {
@@ -26,11 +28,13 @@ router.get("/fuel", function(req, res) {
     ]
   });
 });
-// where am I and where am I supposed to go to get search information - viewing all fuels entered - going from html_controller.js to fuels.handlebars? this should "get" the logic from FuelsLogic.js???
+
 router.get("/fuels", function(req, res) {
-  res.render("fuels", {
-    title: "Fuels Details",
-    fuels: "gas station"
+  fuel.Fuel.findAll({}).then(function(data) {
+    const pineapple = {
+      fuels: data
+    };
+    res.render("fuels", pineapple);
   });
 });
 
