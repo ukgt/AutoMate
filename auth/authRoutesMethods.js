@@ -1,59 +1,57 @@
 let userLoginModel;
 
- module.exports = (dbHelper) => {
+module.exports = dbHelper => {
+  userLoginModel = dbHelper;
 
-     userLoginModel = dbHelper;
-
-     return {
-          registerUser : registerUser,
-          login: login
-     };
- }
+  return {
+    registerUser: registerUser,
+    login: login
+  };
+};
 
 /* handles the api call to register the user and insert them into the users table.
   The req body should contain a username and password. */
-  function registerUser(req, res){
+function registerUser(req, res) {
+  userLoginModel.doesUserExist(req.body.username, (sqlError, doesUserExist) => {
+    //check if the user exists
+    if (sqlError !== null || doesUserExist) {
+      //message to give summary to client
+      const message =
+        sqlError !== null ? "Operation unsuccessful" : "User already exists";
 
-     userLoginModel.doesUserExist(req.body.username, (sqlError, doesUserExist) => {
- 
-       //check if the user exists
-       if (sqlError !== null || doesUserExist){
- 
-         //message to give summary to client
-         const message = sqlError !== null ? "Operation unsuccessful" : "User already exists"
- 
-         //detailed error message from callback
-         const error =  sqlError !== null ? sqlError : "User already exists"
- 
-         sendResponse(res, message, sqlError) 
-         return;
-       }
- 
-       //register the user in the db
-       userLoginModel.registerUserInDB(req.body.username, req.body.password, dataResponseObject => {
- 
-         //create message for the api response
-         const message =  dataResponseObject.error === null  ? "Registration was successful" : "Failed to register user"
- 
-         sendResponse(res, message, dataResponseObject.error)
-       })
-     })
-   }
- 
+      //detailed error message from callback
+      const error = sqlError !== null ? sqlError : "User already exists";
+
+      sendResponse(res, message, sqlError);
+      return;
+    }
+
+    //register the user in the db
+    userLoginModel.registerUserInDB(
+      req.body.username,
+      req.body.password,
+      dataResponseObject => {
+        //create message for the api response
+        const message =
+          dataResponseObject.error === null
+            ? "Registration was successful"
+            : "Failed to register user";
+
+        sendResponse(res, message, dataResponseObject.error);
+      }
+    );
+  });
+}
 
 //sends a response created out of the specified parameters to the client.
 //The typeOfCall is the purpose of the client's api call
 function sendResponse(res, message, error) {
-
-     res
-     .status(error !== null ? error !== null ? 400 : 200 : 400)
-     .json({
-          'message': message,
-          'error': error,
-     })
+  res.status(error !== null ? (error !== null ? 400 : 200) : 400).json({
+    message: message,
+    error: error
+  });
 }
 
-
-function login(req, res){
-     console.log("FU",res)
+function login(req, res) {
+  console.log("FU", res);
 }

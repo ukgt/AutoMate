@@ -1,13 +1,13 @@
 let connection;
 
-module.exports = mySqlConnection =>{
-     connection = mySqlConnection;
-     return {
-          registerUserInDB : registerUserInDB,
-          getUserFromCreds : getUserFromCreds,
-          doesUserExist: doesUserExist
-     }
-}
+module.exports = mySqlConnection => {
+  connection = mySqlConnection;
+  return {
+    registerUserInDB: registerUserInDB,
+    getUserFromCreds: getUserFromCreds,
+    doesUserExist: doesUserExist
+  };
+};
 
 /*
  * attempts to register a user in the DB with the specified details.
@@ -18,9 +18,9 @@ module.exports = mySqlConnection =>{
  * @param password
  * @param registrationCallback - takes a DataResponseObject
  */
-function registerUserInDB(username, password, cb){
-     const query = `INSERT INTO users (username, user_password) VALUES ('${username}', SHA('${password}'))`;
-     connection.query(query, cb)
+function registerUserInDB(username, password, cb) {
+  const query = `INSERT INTO users (username, user_password) VALUES ('${username}', SHA('${password}'))`;
+  connection.query(query, cb);
 }
 
 /*
@@ -33,12 +33,16 @@ function registerUserInDB(username, password, cb){
  * @param password
  * @param callback - takes an error and a user object
  */
-function getUserFromCreds(username, password, cb){
-     const query = `SELECT * FROM users WHERE username = '${username}' AND user_password = SHA('${password}')`
-     connection.query(query, (data) =>{
-         cb(false, data.results !== null && data.results.length  === 1 ? data.results[0] : null);
-         
-    }) 
+function getUserFromCreds(username, password, cb) {
+  const query = `SELECT * FROM users WHERE username = '${username}' AND user_password = SHA('${password}')`;
+  connection.query(query, data => {
+    cb(
+      false,
+      data.results !== null && data.results.length === 1
+        ? data.results[0]
+        : null
+    );
+  });
 }
 
 /*
@@ -54,12 +58,13 @@ function getUserFromCreds(username, password, cb){
  *                   whether a user exists
  */
 function doesUserExist(username, cb) {
-     const query = `SELECT * FROM users WHERE username = '${username}'`;
-     let sqlCallback = (data) => {
-          //calculate if user exists or assign null if results is null
-          const doesUserExist = data.results !== null ? data.results.length > 0 ? true : false : null
-          //check if there are any users with this username and return the appropriate value
-          cb(data.error, doesUserExist)
-      }
-     connection.query(query, sqlCallback)
+  const query = `SELECT * FROM users WHERE username = '${username}'`;
+  let sqlCallback = data => {
+    //calculate if user exists or assign null if results is null
+    const doesUserExist =
+      data.results !== null ? (data.results.length > 0 ? true : false) : null;
+    //check if there are any users with this username and return the appropriate value
+    cb(data.error, doesUserExist);
+  };
+  connection.query(query, sqlCallback);
 }
