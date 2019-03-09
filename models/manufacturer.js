@@ -3,9 +3,6 @@ module.exports = function(sequelize, DataTypes) {
         manufacturerName: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-
-            }
         }
     });
 
