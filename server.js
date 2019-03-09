@@ -1,4 +1,11 @@
 var express = require("express");
+
+const connection = require("./auth/authConfig");
+const accessTokenDBHelper = require("./auth/accessTokenDBHelper")(connection);
+const userLoginModel = require("./auth/userLoginModel")(connection);
+const oAuthModel = require("./auth/authTokenModel")(userLoginModel, accessTokenDBHelper);
+const oAuth2Server = require('node-oauth2-server');
+const cookieParser = require("cookie-parser");
 // const router = express.Router();
 const db = require("./models");
 // const exphbs = require("express-handlebars");
@@ -6,6 +13,19 @@ const db = require("./models");
 var PORT = process.env.PORT || 3000;
 
 var app = express();
+//defines Oath2 model
+app.oauth = oAuth2Server({
+     model: oAuthModel,
+     grants: ['password'],
+     debug: true
+ })
+
+app.use(cookieParser());
+
+ //Defines the Oauth routers and paths
+ const authRoutesMethods = require("./auth/authRoutesMethods")(userLoginModel);
+ const authRouter = require("./auth/aurhRouter")(express.Router(), app, authRoutesMethods);
+ const bodyParser = require('body-parser');
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("public"));
@@ -17,6 +37,11 @@ app.use(
   })
 );
 app.use(express.json());
+
+// defines path to auth routers
+app.use(app.oauth.errorHandler())
+app.use("/auth", authRouter);
+//const router = require("./controllers/html_controllers")(app, authRoutesMethods);
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");

@@ -1,10 +1,53 @@
+<style>
+     .leftHolder, .rightHolder{
+     width: calc(50% - 30px);
+     display: inline-block;
+     position: relative;
+     left:0px;
+     transition: 0.5s all;
+}
 
+.movedLeft{
+     left:calc(-50% - 15px);
+     transition: 0.5s all;
+}
+.red{color:red;}
 
-<p>Add a Vehicle</p>
-<p>View Vehicle Information</p>
-<p>View Fuel Entries</p>
-<p>Add Fuel Entry</p>
-<p>View Vehicle Service History</p>
-<p>Add Service Entry</p>
-<p>Search Service Entries</p>
-<p>Edit User Information</p>
+</style>
+ <script src="./assets/js/index.js"></script>
+ <script src="./assets/js/modal.js"></script>
+<form style="overflow:hidden;" class="col-12 my-3 mx-0 mx-sm-auto pl-3 border border-1 p-3" method="POST">
+     <div style="width:calc(200% + 56px);" class="row align-items-top m-0 p-0">
+          <div class="leftHolder">
+               <div class="form-group">
+                    <label for="tboxLogEmail">Email Address<span class="red">*</span></label>
+                    <input type="email" class="form-control" id="tboxLogEmail" name="email" placeholder="something@company.com"
+                         value="krtcotmo2@gmail.com" required>
+               </div>
+               <div class="form-group">
+                    <label for="tboxLogPass">Password<span class="red">*</span></label>
+                    <input type="password" class="form-control" id="tboxLogPass" name="password" placeholder="" value="123456" required>
+               </div>
+               <button type="submit" class="btn btn-primary d-block" id="btnLogin">Login</button>
+               <button type="submit" class="btn btn-danger d-block mt-3" id="btnNew">Create Account</button>
+          </div>
+          <div class="rightHolder ml-5">
+               <div class="form-group">
+                    <label for="tboxEmail">Email Address<span class="red">*</span></label>
+                    <input type="email" class="form-control" id="tboxEmail" placeholder="something@company.com"
+                         value="krtcotmo2@gmail.com" required>
+               </div>
+               <div class="form-group">
+                    <label for="tboxPass">Password<span class="red">*</span></label>
+                    <input type="password" class="form-control" id="tboxPass" placeholder="" value="123456" required>
+               </div>
+               <div class="form-group">
+                    <label for="tboxConfirmPass">Retype Password<span class="red">*</span></label>
+                    <input type="password" class="form-control" id="tboxConfirmPass" placeholder="" value="123456"
+                         required>
+               </div>
+               <button type="submit" class="btn btn-primary" id="btnAddNew">Submit</button>
+               <button type="submit" class="btn btn-danger ml-2" id="btnCancel">Cancel</button>
+          </div>
+     </div>
+</form>
