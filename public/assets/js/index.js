@@ -22,7 +22,7 @@ $(document).ready(function() {
     let email = $("#tboxEmail")
       .val()
       .trim();
-    let password = $("#tboxPass").val();
+
     let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!passwordMatch) {
       createModal("Form Error", "Password do not match", false);

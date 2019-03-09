@@ -20,7 +20,7 @@ function registerUser(req, res) {
         sqlError !== null ? "Operation unsuccessful" : "User already exists";
 
       //detailed error message from callback
-      const error = sqlError !== null ? sqlError : "User already exists";
+      // const error = sqlError !== null ? sqlError : "User already exists";
 
       sendResponse(res, message, sqlError);
       return;
