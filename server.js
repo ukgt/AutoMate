@@ -4,7 +4,7 @@ const accessTokenDBHelper = require("./auth/accessTokenDBHelper")(connection);
 const userLoginModel = require("./auth/userLoginModel")(connection);
 const oAuthModel = require("./auth/authTokenModel")(userLoginModel, accessTokenDBHelper);
 const oAuth2Server = require('node-oauth2-server');
-
+const cookieParser = require("cookie-parser");
 var PORT = process.env.PORT || 3000;
 
 var app = express();
@@ -14,6 +14,8 @@ app.oauth = oAuth2Server({
      grants: ['password'],
      debug: true
  })
+
+app.use(cookieParser());
 
  //Defines the Oauth routers and paths
  const authRoutesMethods = require("./auth/authRoutesMethods")(userLoginModel);
