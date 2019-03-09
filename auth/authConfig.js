@@ -21,7 +21,7 @@ function query(queryString, callback) {
   connection.connect();
 
   //execute the query and collect the results in the callback
-  connection.query(queryString, function(error, results, fields) {
+  connection.query(queryString, function(error, results) {
     connection.end();
 
     callback(createDataResponseObject(error, results));

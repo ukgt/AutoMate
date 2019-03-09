@@ -16,7 +16,7 @@ module.exports = (router, app, authRoutesMethods) => {
       "SELECT * FROM users WHERE userEmail = ?",
       [items.email],
       function(err, data) {
-        if (data.length == 0) {
+        if (data.length === 0) {
           return res.status(404).json({ message: "User not found" });
         }
 

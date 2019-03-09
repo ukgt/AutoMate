@@ -2,6 +2,10 @@ var express = require("express");
 const router = express.Router();
 const fuel = require("../models");
 
+router.get("/", function(req, res) {
+  res.render("index", { title: "AutoMate" });
+});
+
 router.post("/fuel", function(req, res) {
   //    module.exports = function (app) {
 

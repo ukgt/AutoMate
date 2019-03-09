@@ -32,7 +32,7 @@ const authRouter = require("./auth/aurhRouter")(
   app,
   authRoutesMethods
 );
-const bodyParser = require("body-parser");
+//const bodyParser = require("body-parser");
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("public"));
