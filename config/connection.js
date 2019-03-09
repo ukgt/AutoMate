@@ -4,13 +4,13 @@ let connection;
 if (process.env.JAWSDB_URL) {
   connection = mySQL.createConnection(process.env.JAWSDB_URL);
 } else {
-     connection = mySQL.createConnection({
-          host: "localhost",
-          port: 3306,
-          user: "root",
-          password: "Password1",
-          database: "automate"
-     });
+  connection = mySQL.createConnection({
+    host: "localhost",
+    port: 3306,
+    user: "root",
+    password: "root",
+    database: "automate"
+  });
 }
 
 //make connection
