@@ -1,19 +1,22 @@
 {
     "env": {
         "browser": true,
-        "commonjs": true,
+        "es6": true,
         "node": true
     },
+     "parserOptions": {
+         "ecmaVersion": 2017
+     },
     "extends": "prettier",
     "plugins": [
         "prettier"
-      ],
+    ],
     "rules": {
-        "no-duplicate-case":"error",
-        "no-empty":"error",
-        "no-extra-semi":"error",
+        "no-duplicate-case": "error",
+        "no-empty": "error",
+        "no-extra-semi": "error",
         "no-func-assign": "error",
-        "no-irregular-whitespace":"error",
+        "no-irregular-whitespace": "error",
         "no-unreachable": "error",
         "curly": "error",
         "dot-notation": "error",
@@ -22,10 +25,6 @@
         "no-multi-spaces": "error",
         "no-unused-vars": "error",
         "camelcase": "error",
-        "quotes": [
-            "error",
-            "single"
-        ],
         "semi": [
             "error",
             "always"

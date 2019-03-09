@@ -1,14 +1,6 @@
 <p>{{title}}</p>
-
-{{#each fuel}}
-     {{#each this.items}}
-          <p>{{this}}</p>
-          <hr>
-     {{/each}}
-{{/each}}
-{{#each fuel}}
-     {{#each this.item}}
-          <p>{{this}}</p>
-          <hr>
-     {{/each}}
-{{/each}}
+<script type="text/javascript" src="./assets/js/FuelsLogic.js"></script>
+<form>
+   {{fuels}}
+     <button type="submit" class="btn btn-primary" id="AddFuel">Add New Fuel</button>
+</form>
