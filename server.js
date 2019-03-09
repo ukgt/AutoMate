@@ -31,7 +31,7 @@ app.set("view engine", "handlebars");
 
 // Import routes and give the server access to them.
 var routes = require("./controllers/html_controllers.js");
-var apiRouters = require("./controllers/api_controllers.js");
+// var apiRouters = require("./controllers/api_controllers.js");
 
 app.use("/", routes);
 // app.use("/api", apiRouters);

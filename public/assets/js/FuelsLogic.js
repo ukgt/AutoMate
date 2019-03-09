@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $('#AddFuel').on('click', function(event) {
+  $("#AddFuel").on("click", function(event) {
     event.preventDefault();
     // go to fuel.handlebars to make new entry
   });
@@ -16,6 +16,7 @@ $(document).ready(function() {
       console.log(FuelsData);
       console.log("got the fuel data");
       let newFuel = $("#fuelEntry"); //what goes here to identify the fuels entered
+      console.log(newFuel);
 
       // Then display the fields in the HTML (Section Name, Date, URL)
       var listItem = $("<li class='list-group-item mt-4'>");

@@ -1,23 +1,23 @@
 $(document).ready(function() {
-  $('#fuelSubmit').on('click', function(event) {
+  $("#fuelSubmit").on("click", function(event) {
     event.preventDefault();
     let newFuel = {
-      Date: $('#date')
+      Date: $("#date")
         .val()
         .trim(),
-      Odometer: $('#odometer')
+      Odometer: $("#odometer")
         .val()
         .trim(),
-      Gallons: $('#gallons')
+      Gallons: $("#gallons")
         .val()
         .trim(),
-      PriceGallon: $('#price')
+      PriceGallon: $("#price")
         .val()
         .trim(),
-      FuelGrade: $('#fuelGrade')
+      FuelGrade: $("#fuelGrade")
         .val()
         .trim(),
-      GasStation: $('#location')
+      GasStation: $("#location")
         .val()
         .trim()
     };
@@ -28,7 +28,7 @@ $(document).ready(function() {
       data: newFuel
     })
       .then(function() {
-        console.log('new fuel added!');
+        console.log("new fuel added!");
       })
       .catch(function() {
         alert("Error: please try again");

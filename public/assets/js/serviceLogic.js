@@ -1,18 +1,18 @@
 $(document).ready(function() {
-  $('#serviceSubmit').on('click', function(event) {
+  $("#serviceSubmit").on("click", function(event) {
     event.preventDefault();
     let newService = {
-      Date: $('#date')
+      Date: $("#date")
         .val()
         .trim(),
-      Description: $('#description')
+      Description: $("#description")
         .val()
         .trim(),
       Shop: $("#shop").val(),
-      Cost: $('#cost')
+      Cost: $("#cost")
         .val()
         .trim(),
-      ItemsDone: $('#itemsDone')
+      ItemsDone: $("#itemsDone")
         .val()
         .trim()
     };
@@ -22,7 +22,7 @@ $(document).ready(function() {
       method: "POST",
       data: newService
     }).then(function() {
-      console.log('yay, it works!');
+      console.log("yay, it works!");
     });
     alert("working");
   });

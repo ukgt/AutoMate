@@ -17,7 +17,7 @@ router.get("/fuel", function(req, res) {
     title: "Fuel Details",
     fuel: [
       {
-        item: ['Add New Record']
+        item: ["Add New Record"]
       }
     ]
   });
@@ -52,7 +52,7 @@ router.post("/service", function(req, res) {
       }
     ]
   });
-  req.body.user_input('Add New Record');
+  req.body.user_input("Add New Record");
 });
 router.get("/service", function(req, res) {
   res.render("service", {
