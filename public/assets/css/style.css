@@ -1,0 +1,92 @@
+body{
+     background: url(../img/bkCarDesktop.gif);
+}
+@media all and (max-width: 480px) {
+     body{
+          background: url(../img/mobileBk.png);
+     }
+}
+
+.mainFrame{
+     background: rgba(255,255,255,0.7);
+     border-width:2px !important;
+     height: calc(100vh - 150px);
+     overflow: hidden;
+     overflow-y: auto;
+}
+.bolded{
+     font-weight: bold;
+}
+.largeNavHolder{
+     border:2px solid white;
+     background:rgba(0,0,0,.7);
+     padding: 1em;
+     margin-top:32px;
+}
+.mainBUttons3{
+     height:40px;
+     background: url(../img/btnSliver.png) repeat-x;
+     border-top:#5a5a5a 1px solid;
+     border-bottom:#5a5a5a 1px solid;
+}
+.buttons3{
+     color:white;
+     text-align: center;
+     line-height: 40px;
+}
+.buttons3 a,.buttons3 a:visited,.buttons3 a:hover, .buttons3 a:link{
+     color:white;
+     text-align: center;
+     width:100%;
+     text-decoration:none;
+}
+.midBtn3.notSelected{
+     background-image: url(../img/ltBtnBorder.png), url(../img/unselectedLight.png), url(../img/rtBtnBorder.png);
+     background-repeat: no-repeat, no-repeat, no-repeat;
+     background-position-x: 0, calc(100% - 10px), 100%;
+     background-position-y: 0,50%,0;
+}
+.ltBtn3.notSelected{
+     background-image:  url(../img/rtBtnBorder.png), url(../img/unselectedLight.png);
+     background-repeat: no-repeat, no-repeat;
+     background-position-x: 100%, calc(100% - 10px);
+     background-position-y: 0,50%;
+}
+.rtBtn3.notSelected{
+     background-image:  url(../img/ltBtnBorder.png), url(../img/unselectedLight.png);
+     background-repeat: no-repeat, no-repeat;
+     background-position-x: 0, calc(100% - 10px);
+     background-position-y: 0, 50%;
+}
+.midBtn3.selected{
+     background-image: url(../img/ltBtnBorder.png), url(../img/selectedLight.png), url(../img/rtBtnBorder.png);
+     background-repeat: no-repeat, no-repeat, no-repeat;
+     background-position-x: 0, calc(100% - 10px), 100%;
+     background-position-y: 0,50%,0;
+}
+.ltBtn3.selected{
+     background-image:  url(../img/rtBtnBorder.png), url(../img/selectedLight.png);
+     background-repeat: no-repeat, no-repeat;
+     background-position-x: 100%, calc(100% - 10px);
+     background-position-y: 0,50%;
+}
+.rtBtn3.selected{
+     background-image:  url(../img/ltBtnBorder.png), url(../img/selectedLight.png);
+     background-repeat: no-repeat, no-repeat;
+     background-position-x: 0, calc(100% - 10px);
+     background-position-y: 0, 50%;
+}
+
+.largeNavHolder a,.largeNavHolder a:visited,.largeNavHolder a:hover, .largeNavHolder a:link{
+     color:white;
+     text-decoration:none;
+     font-size:18px;
+     display: flex;
+}
+
+
+/******** INDVIDUAL LINE ITEM PAGES ********/
+.lineItem{
+     border-bottom:1px solid #5a5a5a;
+     margin-bottom:12px;
+}

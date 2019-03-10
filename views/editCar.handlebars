@@ -14,9 +14,9 @@
                {{/each}}
           </select>
      </div>
-     <div class="section" required>
+     <div class="section">
           <div class="topicHeader d-inline-block">Make</div>
-          <select name="make">
+          <select name="make" required>
                <option value="0">Select a Model</option>
                {{#each make}}
                     <option value={{id}}>{{make}}</option>
@@ -74,3 +74,18 @@
      <button type="submit" class="btn btn-primary" id="btnAddNew">Save</button>
      <button type="submit" class="btn btn-danger ml-2" id="btnCancel">Cancel</button>
 </div>
+<style>
+     .mainHolder{
+          padding:12px;
+     }
+     .mainHolder .section{
+          display: flex;
+          justify-content: space-between;
+          margin-bottom:12px;
+     }
+     
+     .subheader{
+          font-size:18px;
+          font-weight:bold;
+     }
+</style>
