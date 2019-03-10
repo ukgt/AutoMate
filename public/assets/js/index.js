@@ -43,7 +43,7 @@ $(document).ready(function() {
       })
         .then(function(results) {
           if (results) {
-            window.location.href = "/car";
+            window.location.href = "/editCar";
           }
         })
         .catch(function(err) {
