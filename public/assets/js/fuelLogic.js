@@ -2,29 +2,35 @@ $(document).ready(function() {
   $("#fuelSubmit").on("click", function(event) {
     event.preventDefault();
     let newFuel = {
-      Date: $("#date")
+      purchaseDate: $("#date")
         .val()
         .trim(),
-      Odometer: $("#odometer")
+      odometer: $("#odometer")
         .val()
         .trim(),
-      Gallons: $("#gallons")
+      gallon: $("#gallons")
         .val()
         .trim(),
-      PriceGallon: $("#price")
+      pricePerGallon: $("#price")
         .val()
         .trim(),
-      FuelGrade: $("#fuelGrade")
+      mpg: $("#fuelGrade")
         .val()
         .trim(),
-      GasStation: $("#location")
+      gasStation: $("#location")
         .val()
         .trim()
+      // latLoc: $("#location")
+      //   .val()
+      //   .trim(),
+      // longLoc: $("#location")
+      //   .val()
+      //   .trim()
     };
     console.log(newFuel);
     $.ajax({
       url: "/fuel",
-      method: "POST",
+      type: "POST",
       data: newFuel
     })
       .then(function() {

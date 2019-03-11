@@ -2,19 +2,17 @@ $(document).ready(function() {
   $("#serviceSubmit").on("click", function(event) {
     event.preventDefault();
     let newService = {
-      Date: $("#date")
+      serviceDate: $("#date")
         .val()
         .trim(),
       Description: $("#description")
         .val()
         .trim(),
-      Shop: $("#shop").val(),
-      Cost: $("#cost")
+      shop: $("#shop").val(),
+      price: $("#cost")
         .val()
         .trim(),
-      ItemsDone: $("#itemsDone")
-        .val()
-        .trim()
+      itemsDone: $("#itemsDone").val()
     };
     console.log(newService);
     $.ajax({

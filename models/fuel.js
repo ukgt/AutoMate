@@ -2,12 +2,12 @@ module.exports = function(sequelize, DataTypes) {
   const Fuel = sequelize.define("Fuel", {
     odometer: {
       type: DataTypes.FLOAT,
-      allowNull: false,
+      allowNull: true,
       validate: {}
     },
     gallon: {
       type: DataTypes.FLOAT,
-      allowNull: false,
+      allowNull: true,
       validate: {}
     },
     purchaseDate: {
@@ -29,17 +29,17 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true,
       validate: {}
-    },
-    latLoc: {
-      type: DataTypes.FLOAT,
-      allowNull: false,
-      validate: {}
-    },
-    longLoc: {
-      type: DataTypes.FLOAT,
-      allowNull: false,
-      validate: {}
     }
+    // latLoc: {
+    //   type: DataTypes.FLOAT,
+    //   allowNull: false,
+    //   validate: {}
+    // },
+    // longLoc: {
+    //   type: DataTypes.FLOAT,
+    //   allowNull: false,
+    //   validate: {}
+    // }
   });
 
   return Fuel;
