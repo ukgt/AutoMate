@@ -1,0 +1,12 @@
+<a href="/addCar"><img src=""/>Add a Car</a>
+<div>
+     {{#each car}}
+          <div>
+               <h4>{{year}} {{manufacturer}} {{make}}</h4>
+               <div class ='d-flex justify-content-between aCar' data-id="{{id}}">
+                    <div>Milage: {{milage}}</div>
+                    <div>License Plate: {{licensePlate}}</div>
+               </div>
+          </div>
+     {{/each}}
+</div>

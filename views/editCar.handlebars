@@ -1,0 +1,76 @@
+<script src="./assets/js/editCar.js"></script>
+<script src="./assets/js/modal.js"></script>
+<div class="mainHolder">
+     <div class="section">
+          <div class="topicHeader d-inline-block">Year</div>
+          <input type="text" name="year" required min="1920" max="2030">
+     </div>
+     <div class="section">
+          <div class="topicHeader d-inline-block">Manufacturer</div>
+          <select name="manufacturer" required>
+               <option value="0">Select a Manufacturer</option>
+               {{#each manufacturer}}
+                    <option value={{id}}>{{manufacturer}}</option>
+               {{/each}}
+          </select>
+     </div>
+     <div class="section" required>
+          <div class="topicHeader d-inline-block">Make</div>
+          <select name="make">
+               <option value="0">Select a Model</option>
+               {{#each make}}
+                    <option value={{id}}>{{make}}</option>
+               {{/each}}
+          </select>
+     </div>
+     <div class="section">
+          <div class="topicHeader d-inline-block">Odometer</div>
+          <input type="number" name="milage">
+     </div>
+     <div class="section">
+          <div class="topicHeader d-inline-block">Vin Number</div>
+          <input type="text" name="vinNumber">
+     </div>
+     <div class="section">
+          <div class="topicHeader d-inline-block">License Plate</div>
+          <input type="text" name="liscensPlate">
+     </div>
+     <div class="section">
+          <div class="topicHeader d-inline-block">Color</div>
+          <input type="text" name="color">
+     </div>
+     <div class="subheader">Fuel Information:</div>
+     <div class="section">
+          <div class="topicHeader d-inline-block">Fule Type</div>
+          <input type="text" name="fuelType">
+     </div>
+     <div class="section">
+          <div class="topicHeader d-inline-block">Tank Capacity</div>
+          <input type="text" name="fuelTank">
+     </div>
+     <div class="subheader">Tires:</div>
+     <div class="section">
+          <div class="topicHeader d-inline-block">Tire Size</div>
+          <input type="text" name="tireSize">
+     </div>
+     <div class="section">
+          <div class="topicHeader d-inline-block">Air Pressure:</div>
+          <input type="text" name="airPressure">
+     </div>
+     <div class="subheader">Wiper Blades:</div>
+     <div class="section">
+          <div class="topicHeader d-inline-block">Drive Side:</div>
+          <input type="text" name="wiperDriver">
+     </div>
+     <div class="section">
+          <div class="topicHeader d-inline-block">Passenger Side:</div>
+          <input type="text" name="wiperPassenger">
+     </div>
+     <div class="section">
+          <div class="topicHeader d-inline-block">Rear:</div>
+          <input type="text" name="wiperRear">
+     </div>
+     
+     <button type="submit" class="btn btn-primary" id="btnAddNew">Save</button>
+     <button type="submit" class="btn btn-danger ml-2" id="btnCancel">Cancel</button>
+</div>

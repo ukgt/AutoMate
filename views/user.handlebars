@@ -1,0 +1,23 @@
+<div class="mainHolder">
+     <div class="section">
+          <h4>User Name (email address)</h4>
+          <div class="topicVal d-inline-block">{{emailAdderss}}</div>
+     </div>
+     <h4>Insrance Information</h4>
+          
+     <div class="section">
+          <div class="topicHeader d-inline-block">Carrier</div>
+          <select name="insCarrier">
+               {{#each insCarriers}}
+                    <option value={{id}}>{{carrierName}}</option>
+               {{/each}}
+          </select>
+     </div>
+     <div class="section">
+          <div class="topicHeader d-inline-block">Policy Number</div>
+          <div class="topicVal d-inline-block">{{insPolicy}}</div>
+     </div>
+
+     <button type="submit" class="btn btn-primary" id="btnAddNew">Save</button>
+     <button type="submit" class="btn btn-danger ml-2" id="btnCancel">Cancel</button>
+</div>
