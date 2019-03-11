@@ -1,13 +1,10 @@
 $(document).ready(function() {
-  $("#AddFuel").on("click", function(event) {
-    event.preventDefault();
-    // go to fuel.handlebars to make new entry
+  $(".lineItem").on("click", function() {
+    let theID = $(this).data("id");
+    window.location.href = "/fuel/1/" + theID;
   });
 
   function AllFuelsQuery() {
-    // i want to get the values of the newFuel that have been entered into the db
-    // see hot restaurant tables.html
-
     $.ajax({
       url: "/fuels",
       type: "GET"

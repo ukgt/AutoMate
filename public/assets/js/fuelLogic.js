@@ -20,12 +20,12 @@ $(document).ready(function() {
       gasStation: $("#location")
         .val()
         .trim()
-      //  latLoc: $("#location")
-      //    .val()
-      //    .trim(),
-      //  longLoc: $("#location")
-      //    .val()
-      //    .trim()
+      // latLoc: $("#location")
+      //   .val()
+      //   .trim(),
+      // longLoc: $("#location")
+      //   .val()
+      //   .trim()
     };
     console.log(newFuel);
     $.ajax({
