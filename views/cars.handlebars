@@ -1,9 +1,9 @@
-<a href="/addCar"><img src=""/>Add a Car</a>
+<script src="/assets/js/cars.js"></script><a href="/addCar"><img src=""/>Add a Car</a>
 <div>
      {{#each car}}
-          <div>
+          <div class="lineItem"  data-id="{{id}}">
                <h4>{{year}} {{manufacturer}} {{make}}</h4>
-               <div class ='d-flex justify-content-between aCar' data-id="{{id}}">
+               <div class ='d-flex justify-content-between aCar'>
                     <div>Milage: {{milage}}</div>
                     <div>License Plate: {{licensePlate}}</div>
                </div>
