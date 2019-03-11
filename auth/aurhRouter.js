@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const connection = require("../config/connection");
 const jwt = require("jsonwebtoken");
+const dbs = require("../models");
 
 module.exports = (router, app, authRoutesMethods) => {
   //registering new users
@@ -28,7 +29,8 @@ module.exports = (router, app, authRoutesMethods) => {
           const token = jwt.sign(
             {
               id: data[0].userId,
-              email: data[0].userEmail
+              email: data[0].userEmail,
+              curCar: 3
             },
             "someTypeOfPW"
           );
