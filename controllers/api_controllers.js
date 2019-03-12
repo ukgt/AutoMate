@@ -1,5 +1,4 @@
 const express = require("express");
-const db = require("../models");
 const router = express.Router();
 
 /*
@@ -54,39 +53,18 @@ router.get("/fuels", (req, res) => {
 });
 
 router.get("/make/:id", (req, res) => {
-  db.Make.findAll({}).then(function(dbAutomate) {
-    res.json({ dbAutomate });
+  db.service.findAll({}).then(function(dbAutomate) {
+    res.json({ make });
   });
 });
 
-router.get("/makes/:manId", (req, res) => {
-  let manId = req.params.manId;
-  db.Make.findAll({ where: { manufacturerId: manId } }).then(function(
-    dbAutomate
-  ) {
-    res.json(dbAutomate);
+router.get("/makes", (req, res) => {
+  db.cars.findAll({}).then(function(dbAutomate) {
+    res.json({ makes });
   });
 });
 
 router.get("/search", (req, res) => {
   res.json({ search });
-});
-router.post("/addNewCar", (req, res) => {
-  db.Car.create(req.body)
-    .then(result => {
-      db.Owner.update({ curCar: result.id }, { where: { id: 1 } }).then(
-        saveRes => {
-          console.log(saveRes);
-          let carData={
-               car:result
-          
-          }
-          res.render("car", carData);
-        }
-      );
-    })
-    .catch(function(err) {
-      res.status(404).message("Error on save");
-    });
 });
 module.exports = router;
