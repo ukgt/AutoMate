@@ -1,7 +1,7 @@
 var express = require("express");
 const router = express.Router();
-const fuel = require("../models");
-const service = require("../models");
+const models = require("../models");
+const connection = require("../config/connection.js");
 
 router.get("/", function(req, res) {
   res.render("index", {
@@ -10,13 +10,13 @@ router.get("/", function(req, res) {
 });
 
 router.post("/fuel", function(req, res) {
-  fuel.Fuel.create(req.body).then(function(Fuel) {
+  models.Fuel.create(req.body).then(function(Fuel) {
     res.json(Fuel);
   });
 });
 
 router.get("/fuels/:carID?", function(req, res) {
-  fuel.Fuel.findAll({}).then(function(data) {
+  models.Fuel.findAll({}).then(function(data) {
     const allFuels = {
       fuels: data
     };
@@ -25,35 +25,51 @@ router.get("/fuels/:carID?", function(req, res) {
 });
 
 router.get("/fuel/:carID/:fuelID", function(req, res) {
-  fuel.Fuel.findOne({
-    where: {
-      id: req.params.fuelID
-    }
-  }).then(function(data) {
-    // let newDate = data.purchaseDate.getMonth() +
-    //   1 +
-    //   "/" +
-    //   data.purchaseDate.getDate() +
-    //   "/" +
-    //   data.purchaseDate.getFullYear();
-      // data.purchaseDate = newDate;
-    const oneFuel = {
-      newDate: data.purchaseDate.toLocaleDateString(),
-
-      fuels: data
-    };
-    res.render("fuel", oneFuel);
-  });
+  if (req.params.fuelID === "0") {
+    // models.Fuel.findOne({
+    //   where: {
+    //     id: req.params.fuelID
+    //   }
+    res.render("fuel");
+  } else {
+    models.Fuel.findOne({
+      where: {
+        id: req.params.fuelID
+      }
+    }).then(function(data) {
+      const oneFuel = {
+        newDate: data.purchaseDate.toLocaleDateString(),
+        fuels: data
+      };
+      res.render("fuel", oneFuel);
+    });
+  }
 });
 
 router.post("/service", function(req, res) {
-  service.Service.create(req.body).then(function(Service) {
-    res.json(Service);
+  models.Service.create(req.body).then(function(saveResult) {
+    res.json(saveResult);
   });
 });
 
+router.post("/serviceEntered", function(req, res) {
+  let serviceId = req.body.serviceId;
+  let serviceDone = req.body.serviceDone;
+  let inserts = [];
+
+  for (let i = 0; i < serviceDone.length; i++) {
+    inserts.push([parseInt(serviceId), parseInt(serviceDone[i])]);
+  }
+  connection.query(
+    "INSERT INTO serviceitems (serviceId, serviceTypeId) VALUES (?)",
+    inserts,
+    function(error, result) {
+      console.log(result);
+    }
+  );
+});
 router.get("/services/:carID/:serviceID", function(req, res) {
-  service.Service.findAll({}).then(function(data) {
+  models.Service.findAll({}).then(function(data) {
     const allServices = {
       services: data
     };
@@ -62,15 +78,21 @@ router.get("/services/:carID/:serviceID", function(req, res) {
 });
 
 router.get("/service/:carID/:serviceID", function(req, res) {
-  service.Service.findOne({
+  models.Service.findOne({
     where: {
       id: req.params.serviceID
     }
   }).then(function(data) {
-    const oneService = {
-      services: data
-    };
-    res.render("service", oneService);
+    let theService = data;
+
+    models.ServiceType.findAll().then(function(data) {
+      const oneService = {
+        servicetype: data,
+        service: theService
+      };
+
+      res.render("service", oneService);
+    });
   });
 });
 

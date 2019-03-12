@@ -5,23 +5,41 @@ $(document).ready(function() {
       serviceDate: $("#date")
         .val()
         .trim(),
-      Description: $("#description")
+      shop: $("#shop")
         .val()
         .trim(),
-      shop: $("#shop").val(),
       price: $("#cost")
         .val()
         .trim(),
-      itemsDone: $("#itemsDone").val()
+      serviceName: $("#serviceName")
+        .val()
+        .trim()
     };
     console.log(newService);
     $.ajax({
       url: "/service",
       method: "POST",
       data: newService
-    }).then(function() {
-      console.log("yay, it works!");
+    }).then(function(result) {
+      console.log(result, "yay, it works!");
+      saveServices(result.id);
     });
-    alert("working");
   });
+
+  let saveServices = function(pineapple) {
+    let allIds = [];
+    $.each($("input[type='checkbox']:checked"), function(i, o) {
+      allIds.push($(o).data("id"));
+    });
+    $.ajax({
+      url: "/serviceEntered",
+      method: "POST",
+      data: {
+        serviceId: pineapple,
+        serviceDone: allIds
+      }
+    }).then(function(result) {
+      console.log(result, "yay, it works!");
+    });
+  };
 });

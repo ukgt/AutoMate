@@ -11,8 +11,7 @@ $(document).ready(function() {
     }).then(function(FuelsData) {
       // Here we then log the tableData to console, where it will show up as an object.
       console.log(FuelsData);
-      console.log("got the fuel data");
-      let newFuel = $("#fuelEntry"); //what goes here to identify the fuels entered
+      let newFuel = $("#fuelEntry");
       console.log(newFuel);
     });
   }
