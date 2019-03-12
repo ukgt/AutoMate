@@ -1,7 +1,7 @@
 var express = require("express");
 const router = express.Router();
-const fuel = require("../models");
-const service = require("../models");
+const dbs = require("../models");
+const jwt = require("jsonwebtoken");
 
 router.get("/", function(req, res) {
   res.render("index", {
@@ -9,14 +9,43 @@ router.get("/", function(req, res) {
   });
 });
 
+router.get("/editCar/:carID?", function(req, res) {
+  let carID = req.params.carID;
+  if (!carID || carID === 0) {
+    dbs.Manufacturer.findAll({
+      order: [["manufacturerName", "ASC"]]
+    }).then(function(data) {
+      res.render("editCar", {
+        title: "Add/Edit Car",
+        manufacturer: data
+      });
+    });
+  } else {
+    res.render("editCar", {
+      title: "Add/Edit Car"
+    });
+  }
+});
+
+router.get("/car/:carid?", function(req, res) {
+  let carId = 4;
+  dbs.Car.findOne({ where: { id: carId } })
+    .then(function(data) {
+      res.render("car", { title: "AutoMate", car: data });
+    })
+    .catch(function(err) {
+      res.status(500).json({ message: err });
+    });
+});
+
 router.post("/fuel", function(req, res) {
-  fuel.Fuel.create(req.body).then(function(Fuel) {
+  dbs.Fuel.create(req.body).then(function(Fuel) {
     res.json(Fuel);
   });
 });
 
 router.get("/fuels/:carID?", function(req, res) {
-  fuel.Fuel.findAll({}).then(function(data) {
+  dbs.Fuel.findAll({}).then(function(data) {
     const allFuels = {
       fuels: data
     };
@@ -25,7 +54,7 @@ router.get("/fuels/:carID?", function(req, res) {
 });
 
 router.get("/fuel/:carID/:fuelID", function(req, res) {
-  fuel.Fuel.findOne({
+  dbs.Fuel.findOne({
     where: {
       id: req.params.fuelID
     }
@@ -36,7 +65,7 @@ router.get("/fuel/:carID/:fuelID", function(req, res) {
     //   data.purchaseDate.getDate() +
     //   "/" +
     //   data.purchaseDate.getFullYear();
-      // data.purchaseDate = newDate;
+    // data.purchaseDate = newDate;
     const oneFuel = {
       newDate: data.purchaseDate.toLocaleDateString(),
 
@@ -47,13 +76,13 @@ router.get("/fuel/:carID/:fuelID", function(req, res) {
 });
 
 router.post("/service", function(req, res) {
-  service.Service.create(req.body).then(function(Service) {
+  dbs.Service.create(req.body).then(function(Service) {
     res.json(Service);
   });
 });
 
 router.get("/services/:carID/:serviceID", function(req, res) {
-  service.Service.findAll({}).then(function(data) {
+  dbs.Service.findAll({}).then(function(data) {
     const allServices = {
       services: data
     };
@@ -62,7 +91,7 @@ router.get("/services/:carID/:serviceID", function(req, res) {
 });
 
 router.get("/service/:carID/:serviceID", function(req, res) {
-  service.Service.findOne({
+  dbs.Service.findOne({
     where: {
       id: req.params.serviceID
     }

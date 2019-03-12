@@ -66,10 +66,11 @@ app.set("view engine", "handlebars");
 
 // Import routes and give the server access to them.
 var routes = require("./controllers/html_controllers.js");
-// var apiRouters = require("./controllers/api_controllers.js");
+var apiRouters = require("./controllers/api_controllers.js");
 
 app.use("/", routes);
-// app.use("/api", apiRouters);
+
+app.use("/api", apiRouters);
 
 // Start our server so that it can begin listening to client requests.
 db.sequelize.sync().then(function() {
