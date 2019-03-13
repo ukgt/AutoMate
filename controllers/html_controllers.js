@@ -9,6 +9,35 @@ router.get("/", function(req, res) {
   });
 });
 
+router.get("/editCar/:carID?", function(req, res) {
+  let carID = req.params.carID;
+  if (!carID || carID === 0) {
+    dbs.Manufacturer.findAll({
+      order: [["manufacturerName", "ASC"]]
+    }).then(function(data) {
+      res.render("editCar", {
+        title: "Add/Edit Car",
+        manufacturer: data
+      });
+    });
+  } else {
+    res.render("editCar", {
+      title: "Add/Edit Car"
+    });
+  }
+});
+
+router.get("/car/:carid?", function(req, res) {
+  let carId = 4;
+  dbs.Car.findOne({ where: { id: carId } })
+    .then(function(data) {
+      res.render("car", { title: "AutoMate", car: data });
+    })
+    .catch(function(err) {
+      res.status(500).json({ message: err });
+    });
+});
+
 router.post("/fuel", function(req, res) {
   models.Fuel.create(req.body).then(function(Fuel) {
     res.json(Fuel);
