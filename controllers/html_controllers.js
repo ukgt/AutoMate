@@ -47,20 +47,10 @@ router.post("/fuel", function(req, res) {
 router.get("/fuels/:carID?", function(req, res) {
   models.Fuel.findAll({
     where: {
-        carId: 1
-      },
-      // Add order conditions here....
-      order: [
-        ['purchaseDate', 'DESC']
-        
-      ]
-
-
-
-
-
-
-
+      carId: 1
+    },
+    // Add order conditions here....
+    order: [["purchaseDate", "DESC"]]
   }).then(function(data) {
     const allFuels = {
       fuels: data
@@ -86,6 +76,7 @@ router.get("/fuel/:carID/:fuelID", function(req, res) {
         newDate: data.purchaseDate.toLocaleDateString(),
         fuels: data
       };
+      // res.render("fuels", oneFuel);
       res.render("fuel", oneFuel);
     });
   }
@@ -138,6 +129,19 @@ router.get("/service/:carID/:serviceID", function(req, res) {
 
       res.render("service", oneService);
     });
+  });
+});
+
+router.get("/search", function(req, res) {
+  models.Fuel.findAll({
+    where: {
+      carId: 1
+    }
+  }).then(function(data) {
+    const allSearch = {
+      fuels: data
+    };
+    res.render("search", allSearch);
   });
 });
 

@@ -8,6 +8,8 @@
     <a href= "/fuel/1/{{id}}" >
 <div class = "lineItem" data-id = "{{id}}">
   <hr>
+          {{!-- <h6>{{#if purchaseDate}}{{#intl locales="en-US"}}{{formatDate purchaseDate units="day" units="month" units="year"}}{{/intl}}{{/if}}</h6> --}}
+
           <h6>{{#intl locales="en-US"}}{{formatDate purchaseDate units="day" units="month" units="year"}}{{/intl}}</h6>
             <p>{{ gasStation}}</p>
               <p>${{formatNumber pricePerGallon}}</p>

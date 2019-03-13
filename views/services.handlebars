@@ -1,26 +1,16 @@
 <script type="text/javascript" src="/assets/js/serviceLogic.js"></script>
 
-
 <div id="fuelEntry">
      <a href="/service/1/0"><button type="submit" class="btn btn-primary" id="AddService">Add New Service</button></a>
+     
      {{#each services}}
+     <a href="/fuel/1/{{id}}">
           <div class="lineItem" data-id="{{id}}">
                <hr>
-               <p>{{serviceDate}}</p>
+               <h6>{{#intl locales="en-US"}}{{formatDate serviceDate units="day" units="month" units="year"}}{{/intl}}</h6>
                <p>{{serviceName}}</p>
                <p>{{shop}}</p>
-               <p>${{price}}</p>
+               <p>${{formatNumber price}}</p>
           </div>
      {{/each}}
-
-
 </div>
-
-
-{{!-- {{#each service}}
-     {{#each this.items}}
-          <p>{{this}}</p>
-          <hr>
-     {{/each}}
-{{/each}}
-<p>{{title}}</p> --}}

@@ -1,0 +1,42 @@
+<p>{{title}}</p>
+<script type="text/javascript" src="../public/assets/js/searchLogic.js"></script>
+
+<body>
+     <nav id="searchEntry" class="navbar navbar-expand-sm navbar-dark bg-black d-sm-none">
+          <a class="navbar-brand" href="#"><img src="/assets/img/autoMateLogo.png" style="width:200px;"></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+               aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+               <ul class="navbar-nav d-sm-none">
+                    <li class="nav-item">
+                         <a class="nav-link" href="#">Create Vehicle</a>
+                    </li>
+                    <li class="nav-item">
+                         <a class="nav-link" href="/cars">Switch Vehicles<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                         <a class="nav-link" href="#">Search for Service</a>
+                    </li>
+                    <li class="nav-item">
+                         <a class="nav-link" href="#">Edit User Information</a>
+                    </li>
+                    <li class="nav-item">
+                         <a class="nav-link" href="#">Log Out</a>
+                    </li>
+               </ul>
+          </div>
+     </nav>
+     <div class="d-fixed d-sm-none d-flex mainBUttons3">
+          <div class="m-0 col d-flex ltBtn3 buttons3 notSelected"><a href="/car/{{carid}}">
+                    <p class="w-100">Car</p>
+               </a></div>
+          <div class="m-0 col d-flex midBtn3 buttons3 notSelected"><a href="/fuels/{{carid}}">
+                    <p class="w-100">Fuel</p>
+               </a></div>
+          <div class="m-0 col d-flex rtBtn3 buttons3 notSelected"><a href="/services/{{carid}}">
+                    <p class="w-100">Service</p>
+               </a></div>
+     </div>
+     <button type="submit" class="btn btn-primary" id="search">Search</button>
