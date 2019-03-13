@@ -34,6 +34,7 @@ $(document).ready(function() {
       data: newFuel
     })
       .then(function() {
+        // window.location.href = "/fuel";
         window.location.href = "/fuels";
       })
       .catch(function() {

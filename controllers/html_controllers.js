@@ -2,6 +2,7 @@ var express = require("express");
 const router = express.Router();
 const dbs = require("../models");
 const connection = require("../config/connection.js");
+const dbs = require("../models");
 
 const jwt = require("jsonwebtoken");
 
@@ -94,6 +95,7 @@ router.get("/fuel/:carID/:fuelID", function(req, res) {
         newDate: data.purchaseDate.toLocaleDateString(),
         fuels: data
       };
+      // res.render("fuels", oneFuel);
       res.render("fuel", oneFuel);
     });
   }
@@ -146,6 +148,19 @@ router.get("/service/:carID/:serviceID", function(req, res) {
 
       res.render("service", oneService);
     });
+  });
+});
+
+router.get("/search", function(req, res) {
+  models.Fuel.findAll({
+    where: {
+      carId: 1
+    }
+  }).then(function(data) {
+    const allSearch = {
+      fuels: data
+    };
+    res.render("search", allSearch);
   });
 });
 
