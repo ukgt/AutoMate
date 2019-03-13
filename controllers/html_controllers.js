@@ -1,7 +1,25 @@
 var express = require("express");
 const router = express.Router();
-const models = require("../models");
+const dbs = require("../models");
 const connection = require("../config/connection.js");
+
+const jwt = require("jsonwebtoken");
+
+let secureConnection = (req, res, next) => {
+  let token, decoded;
+  if (req.cookies.token) {
+    token = req.cookies.token;
+    decoded = jwt.verify(token, "someTypeOfPW");
+    req.body.userId = decoded.id;
+    req.body.curCar = decoded.curCar;
+  }
+
+  if (decoded) {
+    next();
+  } else {
+    res.redirect("/");
+  }
+};
 
 router.get("/", function(req, res) {
   res.render("index", {
@@ -9,8 +27,8 @@ router.get("/", function(req, res) {
   });
 });
 
-router.get("/editCar/:carID?", function(req, res) {
-  let carID = req.params.carID;
+router.get("/editCar", secureConnection, function(req, res) {
+  let carID = req.body.curCar;
   if (!carID || carID === 0) {
     dbs.Manufacturer.findAll({
       order: [["manufacturerName", "ASC"]]
@@ -27,8 +45,8 @@ router.get("/editCar/:carID?", function(req, res) {
   }
 });
 
-router.get("/car/:carid?", function(req, res) {
-  let carId = 4;
+router.get("/car/:carid?", secureConnection, function(req, res) {
+  let carId = req.body.curCar;
   dbs.Car.findOne({ where: { id: carId } })
     .then(function(data) {
       res.render("car", { title: "AutoMate", car: data });
@@ -47,20 +65,10 @@ router.post("/fuel", function(req, res) {
 router.get("/fuels/:carID?", function(req, res) {
   models.Fuel.findAll({
     where: {
-        carId: 1
-      },
-      // Add order conditions here....
-      order: [
-        ['purchaseDate', 'DESC']
-        
-      ]
-
-
-
-
-
-
-
+      carId: 1
+    },
+    // Add order conditions here....
+    order: [["purchaseDate", "DESC"]]
   }).then(function(data) {
     const allFuels = {
       fuels: data

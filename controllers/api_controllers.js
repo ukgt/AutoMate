@@ -1,6 +1,23 @@
 const express = require("express");
 
 const router = express.Router();
+const jwt = require("jsonwebtoken");
+
+let secureConnection = (req, res, next) => {
+  let token, decoded;
+  if (req.cookies.token) {
+    token = req.cookies.token;
+    decoded = jwt.verify(token, "someTypeOfPW");
+    req.body.userId = decoded.id;
+    req.body.curCar = decoded.curCar;
+  }
+
+  if (decoded) {
+    next();
+  } else {
+    res.redirect("/");
+  }
+};
 
 /*
 //sequelize.all(model) <-- query the DB to find a record that has a matching email/password
@@ -14,7 +31,7 @@ const router = express.Router();
     }
 */
 
-router.get("/cars", (req, res) => {
+router.get("/cars", secureConnection, (req, res) => {
   db.cars.findAll({}).then(function(dbAutomate) {
     res.json({ dbAutomate });
   });
