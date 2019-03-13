@@ -1,22 +1,23 @@
 <script src="/assets/js/editCar.js"></script>
 <script src="/assets/js/modal.js"></script>
 <div class="mainHolder">
+     <form action="/api/addNewCar" method="POST">
      <div class="section">
           <div class="topicHeader d-inline-block">Year</div>
-          <input type="text" name="year" required min="1920" max="2030">
+          <input type="number" name="year" required min="1920" max="2030">
      </div>
      <div class="section">
           <div class="topicHeader d-inline-block">Manufacturer</div>
-          <select name="manufacturer" required>
+          <select name="manufacturer" id="manufacturer" required>
                <option value="0">Select a Manufacturer</option>
                {{#each manufacturer}}
-                    <option value={{id}}>{{manufacturer}}</option>
+                    <option value={{id}}>{{manufacturerName}}</option>
                {{/each}}
           </select>
      </div>
      <div class="section">
           <div class="topicHeader d-inline-block">Make</div>
-          <select name="make" required>
+          <select name="make" id="make" required>
                <option value="0">Select a Model</option>
                {{#each make}}
                     <option value={{id}}>{{make}}</option>
@@ -25,19 +26,19 @@
      </div>
      <div class="section">
           <div class="topicHeader d-inline-block">Odometer</div>
-          <input type="number" name="milage">
+          <input type="number" name="curMileage" value="{{#if curMilage}}{{formatNumber curMilage}}{{/if}}">
      </div>
      <div class="section">
           <div class="topicHeader d-inline-block">Vin Number</div>
-          <input type="text" name="vinNumber">
+          <input type="text" name="vin">
      </div>
      <div class="section">
           <div class="topicHeader d-inline-block">License Plate</div>
           <input type="text" name="liscensPlate">
      </div>
      <div class="section">
-          <div class="topicHeader d-inline-block">Color</div>
-          <input type="text" name="color">
+          <div class="topicHeader d-inline-block">Trim</div>
+          <input type="text" name="trim">
      </div>
      <div class="subheader">Fuel Information:</div>
      <div class="section">
@@ -55,7 +56,7 @@
      </div>
      <div class="section">
           <div class="topicHeader d-inline-block">Air Pressure:</div>
-          <input type="text" name="airPressure">
+          <input type="text" name="tirePSI">
      </div>
      <div class="subheader">Wiper Blades:</div>
      <div class="section">
@@ -64,7 +65,7 @@
      </div>
      <div class="section">
           <div class="topicHeader d-inline-block">Passenger Side:</div>
-          <input type="text" name="wiperPassenger">
+          <input type="text" name="wiperPass">
      </div>
      <div class="section">
           <div class="topicHeader d-inline-block">Rear:</div>
@@ -74,6 +75,7 @@
      <button type="submit" class="btn btn-primary" id="btnAddNew">Save</button>
      <button type="submit" class="btn btn-danger ml-2" id="btnCancel">Cancel</button>
 </div>
+</form>
 <style>
      .mainHolder{
           padding:12px;
@@ -88,4 +90,4 @@
           font-size:18px;
           font-weight:bold;
      }
-</style>
+</style>  
