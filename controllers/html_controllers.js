@@ -16,7 +16,23 @@ router.post("/fuel", function(req, res) {
 });
 
 router.get("/fuels/:carID?", function(req, res) {
-  models.Fuel.findAll({}).then(function(data) {
+  models.Fuel.findAll({
+    where: {
+        carId: 1
+      },
+      // Add order conditions here....
+      order: [
+        ['purchaseDate', 'DESC']
+        
+      ]
+
+
+
+
+
+
+
+  }).then(function(data) {
     const allFuels = {
       fuels: data
     };

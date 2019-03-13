@@ -34,7 +34,7 @@ $(document).ready(function() {
       data: newFuel
     })
       .then(function() {
-        console.log("new fuel added!");
+        window.location.href="/fuels";
       })
       .catch(function() {
         alert("Error: please try again");
