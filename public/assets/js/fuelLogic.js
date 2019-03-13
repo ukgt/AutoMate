@@ -34,7 +34,8 @@ $(document).ready(function() {
       data: newFuel
     })
       .then(function() {
-        window.location.href="/fuels";
+        // window.location.href = "/fuel";
+        window.location.href = "/fuels";
       })
       .catch(function() {
         alert("Error: please try again");

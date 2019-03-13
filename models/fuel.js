@@ -29,6 +29,11 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true,
       validate: {}
+    },
+    carId: {
+      type: DataTypes.FLOAT,
+      allowNull: true,
+      validate: {}
     }
     // latLoc: {
     //   type: DataTypes.FLOAT,
