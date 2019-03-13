@@ -2,6 +2,7 @@ var express = require("express");
 const router = express.Router();
 const models = require("../models");
 const connection = require("../config/connection.js");
+const dbs = require("../models");
 
 router.get("/", function(req, res) {
   res.render("index", {
