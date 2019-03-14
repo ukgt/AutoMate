@@ -19,36 +19,41 @@ describe("GET /cars", function() {
 
   it("should find all examples", function(done) {
     // Add some examples to the db to test with
-    db.Cars.bulkCreate([
-      { year: "2015" },
-      { trim: "Premium" }
-    ]).then(function() {
-      // Request the route that returns all examples
-      request.get("/cars").end(function(err, res) {
-        var responseStatus = res.status;
-        var responseBody = res.body;
+    db.Cars.bulkCreate([{ year: "2015" }, { trim: "Premium" }]).then(
+      function() {
+        // Request the route that returns all examples
+        request.get("/cars").end(function(err, res) {
+          var responseStatus = res.status;
+          var responseBody = res.body;
 
-        // Run assertions on the response
+          // Run assertions on the response
 
-        expect(err).to.be.null;
+          expect(err).to.be.null;
 
-        expect(responseStatus).to.equal(200);
+          expect(responseStatus).to.equal(200);
 
-        expect(responseBody)
-          .to.be.an("array")
-          .that.has.lengthOf(2);
+          expect(responseBody)
+            .to.be.an("array")
+            .that.has.lengthOf(2);
 
-        expect(responseBody[0])
-          .to.be.an("object")
-          .that.includes({ text: "First Example", description: "First Description" });
+          expect(responseBody[0])
+            .to.be.an("object")
+            .that.includes({
+              text: "First Example",
+              description: "First Description"
+            });
 
-        expect(responseBody[1])
-          .to.be.an("object")
-          .that.includes({ text: "Second Example", description: "Second Description" });
+          expect(responseBody[1])
+            .to.be.an("object")
+            .that.includes({
+              text: "Second Example",
+              description: "Second Description"
+            });
 
-        // The `done` function is used to end any asynchronous tests
-        done();
-      });
-    });
+          // The `done` function is used to end any asynchronous tests
+          done();
+        });
+      }
+    );
   });
 });

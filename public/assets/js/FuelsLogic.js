@@ -1,8 +1,10 @@
 $(document).ready(function() {
   $(".lineItem").on("click", function() {
-    let theID = $(this).data("id");
-    window.location.href = "/fuel/1/" + theID;
+        let theID = $(this).data("id");
+    window.location.href = "/fuel/" + theID;
   });
+ 
+  $(".midBtn3").toggleClass(["notSelected", "selected"]);
 
   function AllFuelsQuery() {
     $.ajax({

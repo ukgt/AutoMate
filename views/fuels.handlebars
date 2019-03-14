@@ -1,4 +1,4 @@
-<script type="text/javascript" src="../public/assets/js/FuelsLogic.js"></script>
+<script type="text/javascript" src="/assets/js/FuelsLogic.js"></script>
 
 
 <div id="fuelEntry">
@@ -7,7 +7,7 @@
   </div>
   {{#each fuels}}
 
-    <a href="/fuel/1/{{id}}">
+    <a href="/fuel/{{id}}">
       <div class="lineItem" data-id="{{id}}">
         <hr>
         <h6>{{#intl locales="en-US"}}{{formatDate purchaseDate units="day" units="month" units="year"}}{{/intl}}</h6>
