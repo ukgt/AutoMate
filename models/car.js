@@ -2,60 +2,57 @@ module.exports = function(sequelize, DataTypes) {
   const Car = sequelize.define("Car", {
     year: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {}
+      allowNull: false
     },
     trim: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {}
+      allowNull: true
     },
     curMileage: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {}
+      allowNull: true
     },
     tireSize: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {}
+      allowNull: true
     },
     tirePSI: {
       type: DataTypes.FLOAT,
-      allowNull: false,
-      validate: {}
+      allowNull: true
     },
     wiperDriver: {
       type: DataTypes.FLOAT,
-      allowNull: false,
-      validate: {}
+      allowNull: true
     },
     wiperPass: {
       type: DataTypes.FLOAT,
-      allowNull: false,
-      validate: {}
+      allowNull: false
     },
     wiperRear: {
       type: DataTypes.FLOAT,
-      allowNull: true,
-      validate: {}
+      allowNull: true
     },
     vin: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {}
+      allowNull: true
     },
     fuelType: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {}
+      allowNull: true
     },
     fuelTank: {
       type: DataTypes.FLOAT,
-      allowNull: false,
-      validate: {}
+      allowNull: true
     }
   });
+
+  Car.associate = function(models) {
+    Car.belongsTo(models.Owner);
+    Car.belongsTo(models.Manufacturer);
+    Car.belongsTo(models.Make);
+    Car.hasMany(models.Fuel);
+    Car.hasMany(models.Service);
+  };
 
   return Car;
 };

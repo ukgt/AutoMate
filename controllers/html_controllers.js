@@ -2,7 +2,6 @@ var express = require("express");
 const router = express.Router();
 const dbs = require("../models");
 const connection = require("../config/connection.js");
-const dbs = require("../models");
 
 const jwt = require("jsonwebtoken");
 
