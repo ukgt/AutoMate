@@ -1,89 +1,35 @@
 <p>{{title}}</p>
-<script type="text/javascript" src="./assets/js/serviceLogic.js"></script>
+<script type="text/javascript" src="/assets/js/serviceLogic.js"></script>
 <form>
      <div class="form-group">
           <label for="Input Date">Date: </label>
-          <input type="text" class="form-control" id="date" aria-describedby="text" placeholder="Date" value="{{servicDate}}">
-     </div>
-     <div class="form-group">
-          <label for="input name of service">Description: </label>
-          <input type="text" class="form-control" id="description" aria-describedby="text" placeholder="Service Name"
-               value="{{description}}">
+          <input type="text" class="form-control" id="date" aria-describedby="calendar" placeholder="Date"
+               value="{{#if service.serviceDate}}{{#intl locales="en-US"}}{{formatDate service.serviceDate units="day" units="month" units="year"}}{{/intl}}{{/if}}">
      </div>
      <div class="form-group">
           <label for="Input Shop">Shop: </label>
-          <input type="text" class="form-control" id="odometer" placeholder="Location" value="{{shop}}">
+          <input type="text" class="form-control" id="shop" placeholder="Location" value="{{service.shop}}">
      </div>
      <div class="form-group">
           <label for=" input cost">Cost: </label>
-          <input type="text" class="form-control" id="cost" placeholder="Price" value="{{cost}}">
+          <input type="text" class="form-control" id="cost" placeholder="Price" value="{{service.price}}">
      </div>
      <div class="form-group">
           <label for="Items Done">Items done: </label>
-          {{!-- <input type="checkbox" class="form-control" id="itemsDone" aria-describedby="Name Of Service"
-               placeholder="Items done" value="{{itemsDone}}"> --}}
      </div>
-
-<div class="input-group mb-3">
-     
-     <div class="input-group-prepend">
-          <div class="input-group-text">
-               <input type="checkbox" aria-label="Checkbox for following text input">
+     {{#each servicetype}}
+          <div class="input-group mb-3">
+               <div class="input-group-prepend">
+                    <div class="input-group-text">
+                         <input type="checkbox" data-id="{{id}}" name="{{id}}"
+                              aria-label="Checkbox for following text input" value="checked">
+                    </div>
+               </div>
+               <input type="text" class="form-control" id="serviceName" aria-label="Text input with radio button"
+                    placeholder="{{serviceName}}">
           </div>
+     {{/each}}
+     <div class="col text-center">
+     <button type="submit" class="btn btn-primary mb-5" id="serviceSubmit">Submit</button>
      </div>
-     <input type="text" class="form-control" aria-label="Text input with radio button" placeholder = "Oil Change">
-</div>
-
-<div class="input-group mb-3">
-     <div class="input-group-prepend">
-          <div class="input-group-text">
-               <input type="checkbox" aria-label="Checkbox for following text input">
-          </div>
-     </div>
-     <input type="text" class="form-control" aria-label="Text input with radio button" placeholder="Air Filter">
-</div>
-
-<div class="input-group mb-3">
-     <div class="input-group-prepend">
-          <div class="input-group-text">
-               <input type="checkbox" aria-label="Checkbox for following text input">
-          </div>
-     </div>
-     <input type="text" class="form-control" aria-label="Text input with radio button" placeholder="Brake Work">
-</div>
-
-<div class="input-group mb-3">
-     <div class="input-group-prepend">
-          <div class="input-group-text">
-               <input type="checkbox" aria-label="Checkbox for following text input">
-          </div>
-     </div>
-     <input type="text" class="form-control" aria-label="Text input with radio button" placeholder="Belt Replacement">
-</div>
-<div class="input-group mb-3">
-     <div class="input-group-prepend">
-          <div class="input-group-text">
-               <input type="checkbox" aria-label="Checkbox for following text input">
-          </div>
-     </div>
-     <input type="text" class="form-control" aria-label="Text input with radio button" placeholder="Suspension Work">
-</div>
-<div class="input-group mb-3">
-     <div class="input-group-prepend">
-          <div class="input-group-text">
-               <input type="checkbox" aria-label="Checkbox for following text input">
-          </div>
-     </div>
-          <input type="text" class="form-control" aria-label="Text input with radio button" placeholder="Transmission Fluid">
-</div>
-<div class="input-group mb-3">
-     <div class="input-group-prepend">
-          <div class="input-group-text">
-               <input type="checkbox" aria-label="Checkbox for following text input">
-          </div>
-     </div>
-          <input type="text" class="form-control" aria-label="Text input with radio button" placeholder="Tire Replacement">
-</div>
-
-          <button type="submit" class="btn btn-primary" id="serviceSubmit">Submit</button>
 </form>

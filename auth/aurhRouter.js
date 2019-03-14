@@ -61,7 +61,9 @@ module.exports = (router, app, authRoutesMethods) => {
             function(err, data) {
               if (data) {
                 connection.query(
-                  "INSERT INTO owners (userEmail, insPolicy, curCar, createdAt, updatedAt) VALUES (?,?,?,?,?)", [items.userEmail, "", 0, new Date(),new Date()],function(err, data){
+                  "INSERT INTO owners (userEmail, insPolicy, curCar, createdAt, updatedAt) VALUES (?,?,?,?,?)",
+                  [items.userEmail, "", 0, new Date(), new Date()],
+                  function(err, data) {
                     if (data) {
                       res.json({
                         userid: data.insertId
