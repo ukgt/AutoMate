@@ -7,19 +7,20 @@ module.exports = function(sequelize, DataTypes) {
     },
     serviceDate: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
       validate: {}
     },
     price: {
       type: DataTypes.FLOAT,
-      allowNull: false,
+      allowNull: true,
       validate: {}
     }
   });
 
-  // Service.assocation = function(models) {
-  //   Service.hasMany(models.ServiceItems);
-  // };
+  Service.assocation = function(models) {
+    Service.hasMany(models.ServiceItem);
+    Service.belongsTo(models.Car);
+  };
 
   return Service;
 };

@@ -29,11 +29,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true,
       validate: {}
-    },
-    carId: {
-      type: DataTypes.FLOAT,
-      allowNull: true,
-      validate: {}
     }
     // latLoc: {
     //   type: DataTypes.FLOAT,
@@ -46,6 +41,10 @@ module.exports = function(sequelize, DataTypes) {
     //   validate: {}
     // }
   });
+
+  Fuel.associate = function(models) {
+    Fuel.belongsTo(models.Car);
+  };
 
   return Fuel;
 };

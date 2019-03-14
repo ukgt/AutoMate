@@ -48,6 +48,10 @@ module.exports = function(sequelize, DataTypes) {
 
   Car.associate = function(models) {
     Car.belongsTo(models.Owner);
+    Car.belongsTo(models.Manufacturer);
+    Car.belongsTo(models.Make);
+    Car.hasMany(models.Fuel);
+    Car.hasMany(models.Service);
   };
 
   return Car;

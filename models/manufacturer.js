@@ -6,9 +6,10 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  // Manufacturer.associate = function(models) {
-  //   Manufacturer.hasMany(models.Make);
-  // };
+  Manufacturer.associate = function(models) {
+    Manufacturer.hasMany(models.Make);
+    Manufacturer.hasMany(models.Car);
+  };
 
   return Manufacturer;
 };
