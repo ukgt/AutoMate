@@ -11,7 +11,11 @@ module.exports = {
     return queryInterface.bulkInsert(
       "Insurances",
       [
-        { carrierName: "AAA", createdAt: new Date(), updatedAt: new Date() },
+        {
+          carrierName: "AAA",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
         {
           carrierName: "Allstate",
           createdAt: new Date(),
@@ -27,7 +31,10 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date()
         },
-        { carrierName: "Amica", createdAt: new Date(), updatedAt: new Date() },
+        { carrierName: "Amica",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
         {
           carrierName: "Auto-Owners",
           createdAt: new Date(),
@@ -38,7 +45,10 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date()
         },
-        { carrierName: "Geico", createdAt: new Date(), updatedAt: new Date() },
+        { carrierName: "Geico",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
         {
           carrierName: "Hartford",
           createdAt: new Date(),
@@ -79,7 +89,10 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date()
         },
-        { carrierName: "USAA", createdAt: new Date(), updatedAt: new Date() }
+        { carrierName: "USAA",
+          createdAt: new Date(),
+          updatedAt: new Date() 
+        }
       ],
       {}
     );
