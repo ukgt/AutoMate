@@ -25,7 +25,6 @@ describe("GET /fuels", function() {
     ]).then(function() {
       // Request the route that returns all examples
 
-     
       request.get("/fuels").end(function(err, res) {
         var responseStatus = res.status;
         var responseBody = res.body;
@@ -42,11 +41,11 @@ describe("GET /fuels", function() {
 
         expect(responseBody[0])
           .to.be.an("object")
-          .that.includes({ odometer:800, gallon:5});
+          .that.includes({ odometer: 800, gallon: 5 });
 
         expect(responseBody[1])
           .to.be.an("object")
-          .that.includes({ odometer:800, gallon:15 });
+          .that.includes({ odometer: 800, gallon: 15 });
 
         // The `done` function is used to end any asynchronous tests
         done();

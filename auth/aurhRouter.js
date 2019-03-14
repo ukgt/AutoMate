@@ -2,7 +2,6 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const connection = require("../config/connection");
 const jwt = require("jsonwebtoken");
-const dbs = require("../models");
 
 module.exports = (router, app, authRoutesMethods) => {
   //registering new users
@@ -26,18 +25,25 @@ module.exports = (router, app, authRoutesMethods) => {
           data[0].userPassword
         );
         if (isMatching) {
-          const token = jwt.sign(
-            {
-              id: data[0].userId,
-              email: data[0].userEmail,
-              curCar: 3
-            },
-            "someTypeOfPW"
+          let token;
+          connection.query(
+            "SELECT curCar FROM owners WHERE userEmail = ?",
+            [items.email],
+            function(err, ownerData) {
+              token = jwt.sign(
+                {
+                  id: data[0].userId,
+                  email: data[0].userEmail,
+                  curCar: ownerData[0].curCar
+                },
+                "someTypeOfPW"
+              );
+              return res
+                .cookie("token", token)
+                .status(200)
+                .json({ message: "valid login" });
+            }
           );
-          return res
-            .cookie("token", token)
-            .status(200)
-            .json({ message: "valid login" });
         } else {
           return res.status(401).json({ message: "Invalid Username/Password" });
         }
