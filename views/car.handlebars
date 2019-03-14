@@ -1,50 +1,66 @@
+<script src="/assets/js/car.js"></script>
 <div class="mainHolder">
-     <div class="carTitle">{{year}} {{maufacturere}} {{make}}</div>
+     <div class="carTitle">{{car.year}} {{car.maufacturere}} {{car.make}}</div>
      <div class="section">
           <div class="topicHeader d-inline-block">Odometer</div>
-          <div class="topicVal d-inline-block">{{milage}}</div>
+          <div class="topicVal d-inline-block">{{car.curMileage}}</div>
      </div>
      <div class="section">
           <div class="topicHeader d-inline-block">Vin Number</div>
-          <div class="topicVal d-inline-block">{{vinNumber}}</div>
+          <div class="topicVal d-inline-block">{{car.vin}}</div>
      </div>
      <div class="section">
           <div class="topicHeader d-inline-block">License Plate</div>
-          <div class="topicVal d-inline-block">{{liscensPlate}}</div>
+          <div class="topicVal d-inline-block">{{car.liscensPlate}}</div>
      </div>
      <div class="section">
           <div class="topicHeader d-inline-block">Color</div>
-          <div class="topicVal d-inline-block">{{color}}</div>
+          <div class="topicVal d-inline-block">{{car.color}}</div>
      </div>
      <div class="subheader">Fuel Information:</div>
      <div class="section">
-          <div class="topicHeader d-inline-block">Fule Type</div>
-          <div class="topicVal d-inline-block">{{fuleType}}</div>
+          <div class="topicHeader d-inline-block">Fuel Type</div>
+          <div class="topicVal d-inline-block">{{car.fuelType}}</div>
      </div>
      <div class="section">
           <div class="topicHeader d-inline-block">Tank Capacity</div>
-          <div class="topicVal d-inline-block">{{fuelTank}}</div>
+          <div class="topicVal d-inline-block">{{car.fuelTank}} gals.</div>
      </div>
      <div class="subheader">Tires:</div>
      <div class="section">
           <div class="topicHeader d-inline-block">Tire Size</div>
-          <div class="topicVal d-inline-block">{{tireSize}}</div>
+          <div class="topicVal d-inline-block">{{car.tireSize}}</div>
      </div>
      <div class="section">
           <div class="topicHeader d-inline-block">Air Pressure:</div>
-          <div class="topicVal d-inline-block">{{airPressure}}</div>
+          <div class="topicVal d-inline-block">{{car.tirePSI}}</div>
      </div>
      <div class="subheader">Wiper Blades:</div>
      <div class="section">
           <div class="topicHeader d-inline-block">Drive Side:</div>
-          <div class="topicVal d-inline-block">{{wiperDriver}}</div>
+          <div class="topicVal d-inline-block">{{car.wiperDriver}}</div>
      </div>
      <div class="section">
           <div class="topicHeader d-inline-block">Passenger Side:</div>
-          <div class="topicVal d-inline-block">{{wiperPassenger}}</div>
+          <div class="topicVal d-inline-block">{{car.wiperPass}}</div>
      </div>
      <div class="section">
           <div class="topicHeader d-inline-block">Rear:</div>
-          <div class="topicVal d-inline-block">{{wiperRear}}</div>
+          <div class="topicVal d-inline-block">{{car.wiperRear}}</div>
      </div>
 </div>
+<style>
+     .mainHolder{
+          padding:12px;
+     }
+     .mainHolder .section{
+          display: flex;
+          justify-content: space-between;
+          margin-bottom:12px;
+     }
+     
+     .subheader{
+          font-size:18px;
+          font-weight:bold;
+     }
+</style>

@@ -2,58 +2,47 @@ module.exports = function(sequelize, DataTypes) {
   const Car = sequelize.define("Car", {
     year: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {}
+      allowNull: false
     },
     trim: {
       type: DataTypes.STRING,
-      allowNull: true,
-      validate: {}
+      allowNull: true
     },
     curMileage: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      validate: {}
+      allowNull: true
     },
     tireSize: {
       type: DataTypes.STRING,
-      allowNull: true,
-      validate: {}
+      allowNull: true
     },
     tirePSI: {
       type: DataTypes.FLOAT,
-      allowNull: true,
-      validate: {}
+      allowNull: true
     },
     wiperDriver: {
       type: DataTypes.FLOAT,
-      allowNull: true,
-      validate: {}
+      allowNull: true
     },
     wiperPass: {
       type: DataTypes.FLOAT,
-      allowNull: false,
-      validate: {}
+      allowNull: false
     },
     wiperRear: {
       type: DataTypes.FLOAT,
-      allowNull: true,
-      validate: {}
+      allowNull: true
     },
     vin: {
       type: DataTypes.STRING,
-      allowNull: true,
-      validate: {}
+      allowNull: true
     },
     fuelType: {
       type: DataTypes.STRING,
-      allowNull: true,
-      validate: {}
+      allowNull: true
     },
     fuelTank: {
       type: DataTypes.FLOAT,
-      allowNull: true,
-      validate: {}
+      allowNull: true
     }
   });
 

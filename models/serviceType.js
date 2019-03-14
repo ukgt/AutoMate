@@ -7,9 +7,9 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  ServiceTypes.associate = function(models) {
-    ServiceTypes.hasMany(models.ServiceItem, {});
-  }
+  // ServiceTypes.associate = function(models) {
+  //   ServiceTypes.belongsTo(models.ServiceItem);
+  // };
 
   return ServiceTypes;
 };

@@ -17,5 +17,9 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
+  // Service.assocation = function(models) {
+  //   Service.hasMany(models.ServiceItems);
+  // };
+
   return Service;
 };

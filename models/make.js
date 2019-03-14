@@ -2,10 +2,13 @@ module.exports = function(sequelize, DataTypes) {
   const Make = sequelize.define("Make", {
     makeName: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {}
+      allowNull: false
     }
   });
+
+  // Make.associate = function(models) {
+  //   Make.belongsTo(models.Manufacturer);
+  // };
 
   return Make;
 };
