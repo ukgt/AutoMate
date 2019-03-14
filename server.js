@@ -71,11 +71,12 @@ var routes = require("./controllers/html_controllers.js");
 app.use("/", routes);
 
 // app.use("/api", apiRouters);
+let server;
 // Start our server so that it can begin listening to client requests.
 db.sequelize.sync().then(function() {
-  app.listen(PORT, function() {
-  // Log (server-side) when our server has started
-  console.log("Server listening on: http://localhost:" + PORT);
+  server = app.listen(PORT, function() {
+    // Log (server-side) when our server has started
+    console.log("Server listening on: http://localhost:" + PORT);
   });
 });
 module.exports = app;
