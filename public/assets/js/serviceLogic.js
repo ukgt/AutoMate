@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    $(".rtBtn3").toggleClass(["notSelected", "selected"]);
   $("#serviceSubmit").on("click", function(event) {
     event.preventDefault();
     let newService = {

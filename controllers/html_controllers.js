@@ -11,7 +11,7 @@ let secureConnection = (req, res, next) => {
     token = req.cookies.token;
     decoded = jwt.verify(token, "someTypeOfPW");
     req.body.userId = decoded.id;
-    req.body.curCar = decoded.curCar;
+    req.body.CarId = decoded.curCar;
   }
 
   if (decoded) {
@@ -28,7 +28,7 @@ router.get("/", function(req, res) {
 });
 
 router.get("/editCar", secureConnection, function(req, res) {
-  let carID = req.body.curCar;
+  let carID = req.body.CarId;
   if (!carID || carID === 0) {
     dbs.Manufacturer.findAll({
       order: [["manufacturerName", "ASC"]]
@@ -45,8 +45,8 @@ router.get("/editCar", secureConnection, function(req, res) {
   }
 });
 
-router.get("/car/:carid?", secureConnection, function(req, res) {
-  let carId = req.body.curCar;
+router.get("/car", secureConnection, function(req, res) {
+  let carId = req.body.CarId;
   dbs.Car.findOne({ where: { id: carId } })
     .then(function(data) {
       res.render("car", { title: "AutoMate", car: data });
@@ -56,16 +56,19 @@ router.get("/car/:carid?", secureConnection, function(req, res) {
     });
 });
 
-router.post("/fuel", function(req, res) {
-  models.Fuel.create(req.body).then(function(Fuel) {
-    res.json(Fuel);
+router.post("/fuel", secureConnection, function(req, res) {
+  dbs.Fuel.create(req.body).then(function(Fuel) {
+    res.render("fuels", {
+      title: "Fill Ups"
+    });
   });
 });
 
-router.get("/fuels/:carID?", function(req, res) {
-  models.Fuel.findAll({
+router.get("/fuels", secureConnection, function(req, res) {
+  let carId = req.body.CarId;
+  dbs.Fuel.findAll({
     where: {
-      carId: 1
+      CarId: carId
     },
     // Add order conditions here....
     order: [["purchaseDate", "DESC"]]
@@ -77,15 +80,11 @@ router.get("/fuels/:carID?", function(req, res) {
   });
 });
 
-router.get("/fuel/:carID/:fuelID", function(req, res) {
+router.get("/fuel/:fuelID", secureConnection, function(req, res) {
   if (req.params.fuelID === "0") {
-    // models.Fuel.findOne({
-    //   where: {
-    //     id: req.params.fuelID
-    //   }
     res.render("fuel");
   } else {
-    models.Fuel.findOne({
+    dbs.Fuel.findOne({
       where: {
         id: req.params.fuelID
       }
@@ -100,13 +99,13 @@ router.get("/fuel/:carID/:fuelID", function(req, res) {
   }
 });
 
-router.post("/service", function(req, res) {
-  models.Service.create(req.body).then(function(saveResult) {
+router.post("/service", secureConnection, function(req, res) {
+  dbs.Service.create(req.body).then(function(saveResult) {
     res.json(saveResult);
   });
 });
 
-router.post("/serviceEntered", function(req, res) {
+router.post("/serviceEntered", secureConnection, function(req, res) {
   let serviceId = req.body.serviceId;
   let serviceDone = req.body.serviceDone;
   let inserts = [];
@@ -115,15 +114,16 @@ router.post("/serviceEntered", function(req, res) {
     inserts.push([parseInt(serviceId), parseInt(serviceDone[i])]);
   }
   connection.query(
-    "INSERT INTO serviceitems (serviceId, serviceTypeId) VALUES (?)",
+    "INSERT INTO serviceitems (ServiceId, ServiceTypeId) VALUES (?)",
     inserts,
     function(error, result) {
       console.log(result);
+      res.json(result);
     }
   );
 });
-router.get("/services/:carID/:serviceID", function(req, res) {
-  models.Service.findAll({}).then(function(data) {
+router.get("/services", secureConnection, function(req, res) {
+  dbs.Service.findAll({}).then(function(data) {
     const allServices = {
       services: data
     };
@@ -131,27 +131,40 @@ router.get("/services/:carID/:serviceID", function(req, res) {
   });
 });
 
-router.get("/service/:carID/:serviceID", function(req, res) {
-  models.Service.findOne({
-    where: {
-      id: req.params.serviceID
-    }
-  }).then(function(data) {
-    let theService = data;
+router.get("/service/:serviceID", secureConnection, function(req, res) {
+  if (req.params.serviceID === "0") {
 
-    models.ServiceType.findAll().then(function(data) {
-      const oneService = {
-        servicetype: data,
-        service: theService
-      };
+dbs.ServiceType.findAll().then(function (data) {
+  const oneService = {
+    title: "Add a Service",
+    servicetype: data
+  };
 
-      res.render("service", oneService);
-    });
-  });
+  res.render("service", oneService);
 });
 
-router.get("/search", function(req, res) {
-  models.Fuel.findAll({
+  } else {
+    dbs.Service.findOne({
+      where: {
+        id: req.params.serviceID
+      }
+    }).then(function(data) {
+      let theService = data;
+
+      dbs.ServiceType.findAll().then(function(data) {
+        const oneService = {
+          servicetype: data,
+          service: theService
+        };
+
+        res.render("service", oneService);
+      });
+    });
+  }
+});
+
+router.get("/search", secureConnection, function(req, res) {
+  dbs.Fuel.findAll({
     where: {
       carId: 1
     }

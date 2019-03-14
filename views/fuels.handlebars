@@ -3,11 +3,11 @@
 
 <div id="fuelEntry">
   <div class="col text-center">
-  <a href="/fuel/1/0"><button type="submit" class="btn btn-primary" id="AddFuel">Add New Fuel</button></a>
+  <a href="/fuel"><button type="submit" class="btn btn-primary" id="AddFuel">Add New Fuel</button></a>
   </div>
   {{#each fuels}}
 
-    <a href="/fuel/1/{{id}}">
+    <a href="/fuel/{{id}}">
       <div class="lineItem" data-id="{{id}}">
         <hr>
         <h6>{{#intl locales="en-US"}}{{formatDate purchaseDate units="day" units="month" units="year"}}{{/intl}}</h6>
