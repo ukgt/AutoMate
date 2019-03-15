@@ -47,13 +47,13 @@ router.get("/car/:id", (req, res) => {
 });
 
 router.get("/service/:id", (req, res) => {
-  db.service.findAll({}).then(function(dbAutomate) {
-    res.json({ services });
+  db.service.findOne({id: req.params.id}).then(function(dbAutomate) {
+    res.json({ dbAutomate });
   });
 });
 
-router.get("/services", (req, res) => {
-  db.cars.findAll({}).then(function(dbAutomate) {
+router.get("/services/:nameOfCar/:carId", (req, res) => {
+  db.service.findAll({CarId: req.params.carId, }).then(function(dbAutomate) {
     res.json({ dbAutomate });
   });
 });
