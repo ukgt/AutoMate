@@ -90,4 +90,10 @@ body{
      border-bottom:1px solid #5a5a5a;
      margin-bottom:12px;
      cursor: pointer;
+     color: black;
+}
+
+#AddService{
+     
+     text-align:center;
 }

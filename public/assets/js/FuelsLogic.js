@@ -1,8 +1,10 @@
 $(document).ready(function() {
   $(".lineItem").on("click", function() {
-    let theID = $(this).data("id");
-    window.location.href = "/fuel/1/" + theID;
+        let theID = $(this).data("id");
+    window.location.href = "/fuel/" + theID;
   });
+ 
+  $(".midBtn3").toggleClass(["notSelected", "selected"]);
 
   function AllFuelsQuery() {
     $.ajax({
@@ -11,8 +13,7 @@ $(document).ready(function() {
     }).then(function(FuelsData) {
       // Here we then log the tableData to console, where it will show up as an object.
       console.log(FuelsData);
-      console.log("got the fuel data");
-      let newFuel = $("#fuelEntry"); //what goes here to identify the fuels entered
+      let newFuel = $("#fuelEntry");
       console.log(newFuel);
     });
   }

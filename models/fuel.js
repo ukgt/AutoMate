@@ -42,5 +42,9 @@ module.exports = function(sequelize, DataTypes) {
     // }
   });
 
+  Fuel.associate = function(models) {
+    Fuel.belongsTo(models.Car);
+  };
+
   return Fuel;
 };

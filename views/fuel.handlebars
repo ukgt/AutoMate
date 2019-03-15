@@ -1,23 +1,25 @@
 <p>{{title}}</p>
 <script type="text/javascript" src="/assets/js/fuelLogic.js"></script>
+
 <form>
      <div class="form-group" id = "fuelEntry">
-          <label for="exampleInputEmail1">Date: </label>
-          <input type="date" class="form-control" id="date" aria-describedby="calendar" placeholder="Date"
-               value="{{formatDate fuels.purchaseDate}}">
+          <label for="Date">Date: </label>
+          <input type="text" class="form-control" id="date" aria-describedby="calendar" placeholder="Date"
+               value="{{#if fuels.purchaseDate}}{{#intl locales="en-US"}}{{formatDate fuels.purchaseDate units="day" units="month" units="year"}}{{/intl}}{{/if}}">
+                
      </div>
      <div class="form-group">
-          <label for="exampleInputPassword1">Odometer: </label>
-          <input type="text" class="form-control" id="odometer" placeholder="Current Mileage" value="{{formatNumber fuels.odometer}}">
+          <label for="Odometer">Odometer: </label>
+          <input type="text" class="form-control" id="odometer" placeholder="Current Mileage" value="{{fuels.odometer}}">
      </div>
      <div class="form-group">
-          <label for="exampleInputPassword1">Gallons: </label>
+          <label for="Gallons">Gallons: </label>
           <input type="number" class="form-control" id="gallons" placeholder="Gallons" value="{{fuels.gallon}}">
      </div>
      <div class="form-group">
-          <label for="exampleInputEmail1">$ per Gallon: </label>
+          <label for="Price Per Gallon">$ per Gallon: </label>
           <input type="text" class="form-control" id="price" aria-describedby="dollar amount" placeholder="Price per Gallon"
-               value={{formatNumber fuels.pricePerGallon }} >
+               value={{fuels.pricePerGallon }} >
 
      </div>
      <div class="form-group">
@@ -28,5 +30,7 @@
           <label for="exampleInputPassword1">Gas Station</label>
           <input type="text" class="form-control" id="location" placeholder="Gas Station" value="{{fuels.gasStation}}">
      </div>
+     <div class="col text-center">
      <button type="submit" class="btn btn-primary" id="fuelSubmit">Submit</button>
+     </div>
 </form>
