@@ -114,7 +114,7 @@ router.post("/serviceEntered", secureConnection, function(req, res) {
     inserts.push([parseInt(serviceId), parseInt(serviceDone[i])]);
   }
   connection.query(
-    "INSERT INTO serviceitems (ServiceId, ServiceTypeId) VALUES (?)",
+    "INSERT INTO ServiceItems (ServiceId, ServiceTypeId) VALUES (?)",
     inserts,
     function(error, result) {
       console.log(result);
