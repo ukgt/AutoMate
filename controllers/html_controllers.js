@@ -45,14 +45,70 @@ router.get("/editCar", secureConnection, function(req, res) {
   }
 });
 
-router.get("/car", secureConnection, function(req, res) {
-  let carId = req.body.CarId;
-  dbs.Car.findOne({ where: { id: carId } })
+router.get("/car/:CarId?", secureConnection, function(req, res) {
+  let carId =
+    req.params.CarId === undefined ? req.body.CarId : req.params.CarId;
+  let newToken =
+    req.params.CarId !== undefined && req.body.CarId !== req.params.CarId;
+  dbs.Car.findOne({
+    where: { id: carId },
+    include: [{ model: dbs.Make }, { model: dbs.Manufacturer }]
+  })
     .then(function(data) {
-      res.render("car", { title: "AutoMate", car: data });
+      if (newToken) {
+        decoded = jwt.verify(req.cookies.token, "someTypeOfPW");
+        token = jwt.sign(
+          {
+            id: decoded.id,
+            email: decoded.email,
+            curCar: data.id
+          },
+          "someTypeOfPW"
+        );
+        dbs.Owner.update(
+          { curCar: data.id },
+          {
+            where: {
+              id: decoded.id
+            }
+          }
+        )
+          .then(function() {
+            return res.cookie("token", token).render("car", {
+              title: "AutoMate",
+              car: data,
+              manName: data.Manufacturer.manufacturerName,
+              makeName: data.Make.makeName
+            });
+          })
+          .catch(function() {
+            return res
+              .status(500)
+              .json({ message: "Unable to switch out cars" });
+          });
+      } else {
+        return res.render("car", {
+          title: "AutoMate",
+          car: data,
+          manName: data.Manufacturer.manufacturerName,
+          makeName: data.Make.makeName
+        });
+      }
     })
     .catch(function(err) {
       res.status(500).json({ message: err });
+    });
+});
+router.get("/cars", secureConnection, function(req, res) {
+  dbs.Car.findAll({
+    where: { OwnerId: req.body.userId },
+    include: [{ model: dbs.Make }, { model: dbs.Manufacturer }]
+  })
+    .then(function(data) {
+      res.render("cars", { title: "all cars", car: data });
+    })
+    .catch(function(err) {
+      res.status(500).json({ message: "Could not load cars" });
     });
 });
 
@@ -114,10 +170,9 @@ router.post("/serviceEntered", secureConnection, function(req, res) {
     inserts.push([parseInt(serviceId), parseInt(serviceDone[i])]);
   }
   connection.query(
-    "INSERT INTO ServiceItems (ServiceId, ServiceTypeId) VALUES (?)",
+    "INSERT INTO serviceitems (ServiceId, ServiceTypeId) VALUES (?)",
     inserts,
     function(error, result) {
-      console.log(result);
       res.json(result);
     }
   );
@@ -174,4 +229,42 @@ router.get("/search", secureConnection, function(req, res) {
   });
 });
 
+router.get("/api/makes/:manId", (req, res) => {
+  dbs.Make.findAll({ where: { ManufacturerId: req.params.manId } })
+    .then(function(makes) {
+      return res.json(makes);
+    })
+    .catch(function(err) {
+      return res.status(500).json({ message: "no makes found" });
+    });
+});
+
+router.post("/api/addNewCar", secureConnection, function(req, res) {
+  let carobj;
+  req.body.OwnerId = req.body.userId;
+  dbs.Car.create(req.body)
+    .then(function(data) {
+      carobj = data;
+      dbs.Owner.update(
+        { curCar: carobj.id },
+        { where: { id: req.body.userId } }
+      ).then(function() {
+        let token = jwt.sign(
+          {
+            id: req.body.userId,
+            email: req.body.userId,
+            curCar: carobj.id
+          },
+          "someTypeOfPW"
+        );
+        return res
+          .cookie("token", token)
+          .status(201)
+          .json(carobj);
+      });
+    })
+    .catch(function(err) {
+      res.status(500).json({ message: "error" + err });
+    });
+});
 module.exports = router;

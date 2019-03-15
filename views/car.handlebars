@@ -1,21 +1,17 @@
 <script src="/assets/js/car.js"></script>
 <div class="mainHolder">
-     <div class="carTitle">{{car.year}} {{car.maufacturere}} {{car.make}}</div>
+     <div class="carTitle"><h4>{{car.year}} {{manName}} {{makeName}} </h4></div>
+     <div class="section">
+          <div class="topicHeader d-inline-block">Trim Level</div>
+          <div class="topicVal d-inline-block">{{car.trim}}</div>
+     </div>
      <div class="section">
           <div class="topicHeader d-inline-block">Odometer</div>
-          <div class="topicVal d-inline-block">{{car.curMileage}}</div>
+          <div class="topicVal d-inline-block">{{car.curMileage}} miles</div>
      </div>
      <div class="section">
           <div class="topicHeader d-inline-block">Vin Number</div>
           <div class="topicVal d-inline-block">{{car.vin}}</div>
-     </div>
-     <div class="section">
-          <div class="topicHeader d-inline-block">License Plate</div>
-          <div class="topicVal d-inline-block">{{car.liscensPlate}}</div>
-     </div>
-     <div class="section">
-          <div class="topicHeader d-inline-block">Trim</div>
-          <div class="topicVal d-inline-block">{{car.trim}}</div>
      </div>
      <div class="subheader">Fuel Information:</div>
      <div class="section">
