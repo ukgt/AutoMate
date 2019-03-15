@@ -58,7 +58,7 @@ module.exports = (router, app, authRoutesMethods) => {
       [items.email],
       function(err, data) {
         if (data.length > 0) {
-          return res.status(404).json({ message: "User email already eists" });
+          return res.status(404).json({ message: "User email already exists" });
         } else {
           var hash = bcrypt.hashSync(items.userPassword, saltRounds);
 
@@ -66,6 +66,9 @@ module.exports = (router, app, authRoutesMethods) => {
             "INSERT INTO users (userEmail, userPassword) VALUES (?,?)",
             [items.userEmail, hash],
             function(err, data) {
+               if(err){
+                    return res.status(500).json({message:err});
+               }
               if (data) {
                 let token = jwt.sign(
                   {
@@ -79,6 +82,9 @@ module.exports = (router, app, authRoutesMethods) => {
                   "INSERT INTO owners (userEmail, insPolicy, curCar, createdAt, updatedAt) VALUES (?,?,?,?,?)",
                   [items.userEmail, "", 0, new Date(), new Date()],
                   function(err, data) {
+                    if(err){
+                         return res.status(500).json({message:err});
+                    }
                     if (data) {
                       return res
                         .cookie("token", token)
