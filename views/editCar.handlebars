@@ -8,7 +8,7 @@
      </div>
      <div class="section">
           <div class="topicHeader d-inline-block">Manufacturer</div>
-          <select name="manufacturer" id="manufacturer" required>
+          <select name="manufacturer" id="manufacturer" required >
                <option value="0">Select a Manufacturer</option>
                {{#each manufacturer}}
                     <option value={{id}}>{{manufacturerName}}</option>
@@ -17,7 +17,7 @@
      </div>
      <div class="section">
           <div class="topicHeader d-inline-block">Make</div>
-          <select name="make" id="make" required>
+          <select name="make" id="make" required >
                <option value="0">Select a Model</option>
                {{#each make}}
                     <option value={{id}}>{{make}}</option>
@@ -43,33 +43,33 @@
      <div class="subheader">Fuel Information:</div>
      <div class="section">
           <div class="topicHeader d-inline-block">Fule Type</div>
-          <input type="text" name="fuelType">
+          <input type="number" name="fuelType">
      </div>
      <div class="section">
           <div class="topicHeader d-inline-block">Tank Capacity</div>
-          <input type="text" name="fuelTank">
+          <input type="number" name="fuelTank">
      </div>
      <div class="subheader">Tires:</div>
      <div class="section">
           <div class="topicHeader d-inline-block">Tire Size</div>
-          <input type="text" name="tireSize">
+          <input type="number" name="tireSize">
      </div>
      <div class="section">
           <div class="topicHeader d-inline-block">Air Pressure:</div>
-          <input type="text" name="tirePSI">
+          <input type="number" name="tirePSI">
      </div>
      <div class="subheader">Wiper Blades:</div>
      <div class="section">
           <div class="topicHeader d-inline-block">Drive Side:</div>
-          <input type="text" name="wiperDriver">
+          <input type="number" name="wiperDriver">
      </div>
      <div class="section">
           <div class="topicHeader d-inline-block">Passenger Side:</div>
-          <input type="text" name="wiperPass">
+          <input type="number" name="wiperPass">
      </div>
      <div class="section">
           <div class="topicHeader d-inline-block">Rear:</div>
-          <input type="text" name="wiperRear">
+          <input type="number" name="wiperRear">
      </div>
      
      <button type="submit" class="btn btn-primary" id="btnAddNew">Save</button>
