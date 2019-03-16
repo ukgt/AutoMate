@@ -1,9 +1,9 @@
 {
   "development": {
     "username": "root",
-    "password": "Jt5202464", 
+    "password": "khoimj15", 
     "database": "automate",
-    "host": "127.0.0.1",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {

@@ -210,14 +210,23 @@ router.get("/service/:serviceID", secureConnection, function(req, res) {
   }
 });
 
+router.post("/search", secureConnection, function(req, res) {
+  let k= req.body.keyword;
+  connection.query("SELECT s.id, s.shop, s.serviceDate, s.price  FROM Services as s INNER JOIN ServiceItems as si ON si.ServiceID = s.id WHERE si.ServiceTypeId = ? AND s.CarId = ?;",[k,req.body.CarId],function(err,data){
+if (err) 
+ {
+   return res.status(500).json({message:"unable to retrieve services"})
+  }
+   return res.status(200).json(data)
+
+  })
+})
+
 router.get("/search", secureConnection, function(req, res) {
-  dbs.Fuel.findAll({
-    where: {
-      carId: 1
-    }
+  dbs.ServiceType.findAll({
   }).then(function(data) {
     const allSearch = {
-      fuels: data
+      searchTerm: data
     };
     res.render("search", allSearch);
   });
