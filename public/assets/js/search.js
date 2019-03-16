@@ -7,10 +7,7 @@ db.Automate.findAll().then(services => {
   })
 //list record and description
  
-
 //service
-
-
 
 //gas
 

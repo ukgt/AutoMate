@@ -162,13 +162,10 @@ router.get("/service/:serviceID", secureConnection, function(req, res) {
 });
 
 router.get("/search", secureConnection, function(req, res) {
-  dbs.Fuel.findAll({
-    where: {
-      carId: 1
-    }
+  dbs.ServiceType.findAll({
   }).then(function(data) {
     const allSearch = {
-      fuels: data
+      searchTerm: data
     };
     res.render("search", allSearch);
   });
