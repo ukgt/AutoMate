@@ -1,17 +1,14 @@
-<script type="text/javascript" src="../public/assets/js/searchLogic.js"></script>
+<script type="text/javascript" src="/assets/js/searchLogic.js"></script>
 
-    <div class="col text-center">
-     <button type="submit" class="btn btn-primary" id="search">Search</button>
-     </div>
-     <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
-               Dropdown button
-          </button>
-          <select name="manufacturer" id="manufacturer" required>
+    
+     <div class="dropdown mt-3" >
+          <select name="keyword" id="SearchTerm" required>
                <option value="0">Select a Manufacturer</option>
                {{#each searchTerm}}
                     <option value={{id}}>{{serviceName}}</option>
                {{/each}}
           </select>
+     </div>
+     <div class="results">
+        
      </div>
