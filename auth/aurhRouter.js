@@ -27,12 +27,12 @@ module.exports = (router, app, authRoutesMethods) => {
         if (isMatching) {
           let token;
           connection.query(
-            "SELECT curCar FROM owners WHERE userEmail = ?",
+            "SELECT curCar FROM Owners WHERE userEmail = ?",
             [items.email],
             function(err, ownerData) {
               token = jwt.sign(
                 {
-                  id: data[0].userId,
+                  id: data.length > 0 ? data[0].userId : null,
                   email: data[0].userEmail,
                   curCar: ownerData[0].curCar
                 },
