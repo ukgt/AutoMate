@@ -28,8 +28,9 @@ router.get("/", function(req, res) {
 });
 
 router.get("/editCar", secureConnection, function(req, res) {
-     let carId =
-     req.params.CarId === undefined ? req.body.CarId : req.params.CarId;if (!carID || carID === 0) {
+  let carId =
+    req.params.CarId === undefined ? req.body.CarId : req.params.CarId;
+  if (!carId || carId === 0) {
     dbs.Manufacturer.findAll({
       order: [["manufacturerName", "ASC"]]
     }).then(function(data) {
@@ -107,13 +108,13 @@ router.get("/cars", secureConnection, function(req, res) {
     .then(function(data) {
       res.render("cars", { title: "all cars", car: data });
     })
-    .catch(function(err) {
+    .catch(function() {
       res.status(500).json({ message: "Could not load cars" });
     });
 });
 
 router.post("/fuel", secureConnection, function(req, res) {
-  dbs.Fuel.create(req.body).then(function(Fuel) {
+  dbs.Fuel.create(req.body).then(function() {
     res.render("fuels", {
       title: "Fill Ups"
     });
@@ -234,7 +235,7 @@ router.get("/api/makes/:manId", (req, res) => {
     .then(function(makes) {
       return res.json(makes);
     })
-    .catch(function(err) {
+    .catch(function() {
       return res.status(500).json({ message: "no makes found" });
     });
 });

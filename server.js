@@ -71,7 +71,6 @@ var routes = require("./controllers/html_controllers.js");
 app.use("/", routes);
 
 // app.use("/api", apiRouters);
-let server;
 // Start our server so that it can begin listening to client requests.
 db.sequelize.sync().then(function() {
   server = app.listen(PORT, function() {
@@ -79,4 +78,3 @@ db.sequelize.sync().then(function() {
     console.log("Server listening on: http://localhost:" + PORT);
   });
 });
-
