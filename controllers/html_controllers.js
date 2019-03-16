@@ -28,9 +28,6 @@ router.get("/", function(req, res) {
 });
 
 router.get("/editCar", secureConnection, function(req, res) {
-  let carId =
-    req.params.CarId === undefined ? req.body.CarId : req.params.CarId;
-  if (!carId || carId === 0) {
     dbs.Manufacturer.findAll({
       order: [["manufacturerName", "ASC"]]
     }).then(function(data) {
@@ -39,11 +36,7 @@ router.get("/editCar", secureConnection, function(req, res) {
         manufacturer: data
       });
     });
-  } else {
-    res.render("editCar", {
-      title: "Add/Edit Car"
-    });
-  }
+  
 });
 
 router.get("/car/:CarId?", secureConnection, function(req, res) {
