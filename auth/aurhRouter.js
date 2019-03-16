@@ -58,22 +58,38 @@ module.exports = (router, app, authRoutesMethods) => {
       [items.email],
       function(err, data) {
         if (data.length > 0) {
-          return res.status(404).json({ message: "User email already eists" });
+          return res.status(404).json({ message: "User email already exists" });
         } else {
           var hash = bcrypt.hashSync(items.userPassword, saltRounds);
+
           connection.query(
             "INSERT INTO users (userEmail, userPassword) VALUES (?,?)",
             [items.userEmail, hash],
             function(err, data) {
+               if(err){
+                    return res.status(500).json({message:err});
+               }
               if (data) {
+                let token = jwt.sign(
+                  {
+                    id: data.insertId,
+                    email: items.userEmail,
+                    curCar: 0
+                  },
+                  "someTypeOfPW"
+                );
                 connection.query(
-                  "INSERT INTO owners (userEmail, insPolicy, curCar, createdAt, updatedAt) VALUES (?,?,?,?,?)",
+                  "INSERT INTO Owners (userEmail, insPolicy, curCar, createdAt, updatedAt) VALUES (?,?,?,?,?)",
                   [items.userEmail, "", 0, new Date(), new Date()],
                   function(err, data) {
+                    if(err){
+                         return res.status(500).json({message:err});
+                    }
                     if (data) {
-                      res.json({
-                        userid: data.insertId
-                      });
+                      return res
+                        .cookie("token", token)
+                        .status(200)
+                        .json({ message: "valid login" });
                     } else {
                       res.json(err);
                     }

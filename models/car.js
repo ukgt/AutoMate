@@ -26,7 +26,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     wiperPass: {
       type: DataTypes.FLOAT,
-      allowNull: false
+      allowNull: true
     },
     wiperRear: {
       type: DataTypes.FLOAT,

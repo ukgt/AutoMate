@@ -114,7 +114,7 @@ router.post("/serviceEntered", secureConnection, function(req, res) {
     inserts.push([parseInt(serviceId), parseInt(serviceDone[i])]);
   }
   connection.query(
-    "INSERT INTO serviceitems (ServiceId, ServiceTypeId) VALUES (?)",
+    "INSERT INTO ServiceItems (ServiceId, ServiceTypeId) VALUES (?)",
     inserts,
     function(error, result) {
       console.log(result);
@@ -133,16 +133,14 @@ router.get("/services", secureConnection, function(req, res) {
 
 router.get("/service/:serviceID", secureConnection, function(req, res) {
   if (req.params.serviceID === "0") {
+    dbs.ServiceType.findAll().then(function(data) {
+      const oneService = {
+        title: "Add a Service",
+        servicetype: data
+      };
 
-dbs.ServiceType.findAll().then(function (data) {
-  const oneService = {
-    title: "Add a Service",
-    servicetype: data
-  };
-
-  res.render("service", oneService);
-});
-
+      res.render("service", oneService);
+    });
   } else {
     dbs.Service.findOne({
       where: {
