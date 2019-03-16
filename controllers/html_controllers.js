@@ -28,8 +28,8 @@ router.get("/", function(req, res) {
 });
 
 router.get("/editCar", secureConnection, function(req, res) {
-  let carID = req.body.CarId;
-  if (!carID || carID === 0) {
+     let carId =
+     req.params.CarId === undefined ? req.body.CarId : req.params.CarId;if (!carID || carID === 0) {
     dbs.Manufacturer.findAll({
       order: [["manufacturerName", "ASC"]]
     }).then(function(data) {
