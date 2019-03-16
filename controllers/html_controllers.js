@@ -106,7 +106,7 @@ router.get("/cars", secureConnection, function(req, res) {
     });
 });
 
-router.post("/fuel", secureConnection, function(req, res) {
+router.post("/fuel/0", secureConnection, function(req, res) {
   dbs.Fuel.create(req.body).then(function() {
     res.render("fuels", {
       title: "Fill Ups"
@@ -149,7 +149,7 @@ router.get("/fuel/:fuelID", secureConnection, function(req, res) {
   }
 });
 
-router.post("/service", secureConnection, function(req, res) {
+router.post("/service/0", secureConnection, function(req, res) {
   dbs.Service.create(req.body).then(function(saveResult) {
     res.json(saveResult);
   });
@@ -171,6 +171,7 @@ router.post("/serviceEntered", secureConnection, function(req, res) {
     }
   );
 });
+
 router.get("/services", secureConnection, function(req, res) {
   dbs.Service.findAll({}).then(function(data) {
     const allServices = {

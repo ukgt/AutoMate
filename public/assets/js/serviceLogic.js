@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $(".rtBtn3").toggleClass(["notSelected", "selected"]);
+  $(".rtBtn3").toggleClass(["notSelected", "selected"]);
   $("#serviceSubmit").on("click", function(event) {
     event.preventDefault();
     let newService = {
@@ -18,7 +18,7 @@ $(document).ready(function() {
     };
     console.log(newService);
     $.ajax({
-      url: "/service",
+      url: "/service/0",
       method: "POST",
       data: newService
     }).then(function(result) {
@@ -41,6 +41,14 @@ $(document).ready(function() {
       }
     }).then(function(result) {
       console.log(result, "yay, it works!");
+      window.location.href = "/services";
+    }).catch(function(err) {
+      console.log(err);
     });
   };
+});
+
+$(document).on("click", ".lineItem", function() {
+  let ind = $(this).data("id");
+  window.location.href = "/service/" + ind;
 });

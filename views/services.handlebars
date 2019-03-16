@@ -1,18 +1,14 @@
 <script type="text/javascript" src="/assets/js/serviceLogic.js"></script>
-
-<div id="fuelEntry">
-     <div class="col text-center">
-     <a href="/service/1/0"><button type="submit" class="btn btn-primary text-center" id="AddService">Add New Service</button></a>
-     </div>
-     
+<a href="service/0"><img src=""/>Add New Service</a>
+<div>
      {{#each services}}
-     <a href="/fuel/1/{{id}}">
           <div class="lineItem" data-id="{{id}}">
-               <hr>
-               <h6>{{#intl locales="en-US"}}{{formatDate serviceDate units="day" units="month" units="year"}}{{/intl}}</h6>
-               <p>{{serviceName}}</p>
-               <p>{{shop}}</p>
-               <p>${{formatNumber price}}</p>
+               <h4>{{#intl locales="en-US"}}{{formatDate serviceDate units="day" units="month" units="year"}}{{/intl}}</h4>
+               <div class="d-flex justify-content-between aCar">
+                    <div>Service: {{serviceName}}</div>
+                    <div>Shop: {{shop}}</div>
+                    <div>Price: ${{formatNumber price}}</div>
+               </div>
           </div>
      {{/each}}
 </div>
