@@ -2,10 +2,10 @@
 <div>
      {{#each car}}
           <div class="lineItem"  data-id="{{id}}">
-               <h4>{{year}} {{manufacturer}} {{make}}</h4>
+               <h4>{{year}} {{Manufacturer.manufacturerName}} {{Make.makeName}}</h4>
                <div class ='d-flex justify-content-between aCar'>
-                    <div>Milage: {{milage}}</div>
-                    <div>License Plate: {{licensePlate}}</div>
+                    <div>Milage: {{curMileage}}</div>
+                    <div>Trim: {{trim}}</div>
                </div>
           </div>
      {{/each}}
