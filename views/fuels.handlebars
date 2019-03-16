@@ -1,22 +1,13 @@
 <script type="text/javascript" src="/assets/js/FuelsLogic.js"></script>
-
-
-<div id="fuelEntry">
-  <div class="col text-center">
-  <a href="/fuel"><button type="submit" class="btn btn-primary" id="AddFuel">Add New Fuel</button></a>
-  </div>
+<a href="fuel/0"><img src=""/>Add New Fuel</a>
+<div>
   {{#each fuels}}
-
-    <a href="/fuel/{{id}}">
-      <div class="lineItem" data-id="{{id}}">
-        <hr>
-        <h6>{{#intl locales="en-US"}}{{formatDate purchaseDate units="day" units="month" units="year"}}{{/intl}}</h6>
-        <p>{{ gasStation}}</p>
-        <p>${{formatNumber pricePerGallon}}</p>
-
-      </div>
-    </a>
+    <div class="lineItem" data-id="{{id}}">
+      <h4>{{#intl locales="en-US"}}{{formatDate purchaseDate units="day" units="month" units="year"}}{{/intl}}</h4>
+        <div class="d-flex justify-content-between aCar">
+          <div>Gas Station: {{ gasStation}}</div>
+          <div>Price/Gallon: ${{formatNumber pricePerGallon}}</div>
+        </div>
+    </div>
   {{/each}}
-
-
 </div>

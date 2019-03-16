@@ -1,10 +1,11 @@
-<script src="/assets/js/cars.js"></script><a href="/addCar"><img src=""/>Add a Car</a>
+<script src="/assets/js/cars.js"></script>
+<a href="/editCar"><img src=""/>Add New Car</a>
 <div>
      {{#each car}}
           <div class="lineItem"  data-id="{{id}}">
                <h4>{{year}} {{Manufacturer.manufacturerName}} {{Make.makeName}}</h4>
                <div class ='d-flex justify-content-between aCar'>
-                    <div>Milage: {{curMileage}}</div>
+                    <div>Mileage: {{curMileage}}</div>
                     <div>Trim: {{trim}}</div>
                </div>
           </div>

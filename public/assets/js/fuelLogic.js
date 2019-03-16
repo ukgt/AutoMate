@@ -29,7 +29,7 @@ $(document).ready(function() {
     };
     console.log(newFuel);
     $.ajax({
-      url: "/fuel",
+      url: "/fuel/0",
       type: "POST",
       data: newFuel
     })

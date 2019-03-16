@@ -1,9 +1,9 @@
 $(document).ready(function() {
-  $(".lineItem").on("click", function() {
-        let theID = $(this).data("id");
-    window.location.href = "/fuel/" + theID;
-  });
- 
+  // $(".lineItem").on("click", function() {
+  //       let theID = $(this).data("id");
+  //   window.location.href = "/fuel/" + theID;
+  // });
+
   $(".midBtn3").toggleClass(["notSelected", "selected"]);
 
   function AllFuelsQuery() {
@@ -18,4 +18,9 @@ $(document).ready(function() {
     });
   }
   AllFuelsQuery();
+});
+
+$(document).on("click", ".lineItem", function() {
+  let ind = $(this).data("id");
+  window.location.href = "/fuel/" + ind;
 });
