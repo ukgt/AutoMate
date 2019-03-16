@@ -12,6 +12,7 @@ const cookieParser = require("cookie-parser");
 // const router = express.Router();
 const db = require("./models");
 // const exphbs = require("express-handlebars");
+let axios = require("axios");
 
 var PORT = process.env.PORT || 3000;
 
@@ -69,7 +70,13 @@ var routes = require("./controllers/html_controllers.js");
 // var apiRouters = require("./controllers/api_controllers.js");
 
 app.use("/", routes);
-
+axios({
+     url: '',
+     method: 'POST',
+     headers: {
+       'Authorization': 'Bearer token'
+     }
+    });
 // app.use("/api", apiRouters);
 // Start our server so that it can begin listening to client requests.
 db.sequelize.sync().then(function() {

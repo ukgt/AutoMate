@@ -38,7 +38,7 @@ module.exports = (router, app, authRoutesMethods) => {
                 },
                 "someTypeOfPW"
               );
-              res.header("Authorization", "Bearer " + token);
+
               return res
                 .cookie("token", token)
                 .status(200)

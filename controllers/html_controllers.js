@@ -12,7 +12,6 @@ let secureConnection = (req, res, next) => {
     decoded = jwt.verify(token, "someTypeOfPW");
     req.body.userId = decoded.id;
     req.body.CarId = decoded.curCar;
-    res.header("Authorization", "Bearer " + token);
   }
 
   if (decoded) {
