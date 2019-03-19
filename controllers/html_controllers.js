@@ -173,7 +173,7 @@ router.post("/serviceEntered", secureConnection, function(req, res) {
 });
 
 router.get("/services", secureConnection, function(req, res) {
-  dbs.Service.findAll({ where: { id: req.body.CarId } }).then(function(data) {
+  dbs.Service.findAll({ where: { CarId: req.body.CarId } }).then(function(data) {
     const allServices = {
       services: data
     };
