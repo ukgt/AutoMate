@@ -1,5 +1,8 @@
 # AutoProject (https://autoproject2.herokuapp.com/)
 
+## What's it all about?
+Automate is currently a web application to help you keep track of services/repairs and gas consumption details.  Wonder what size tire size you need when you call the tire shop?  Our application will help you organize details to keep them at your finger tips.
+
 ## Built With
 * [HTML5](https://www.w3schools.com/html/default.asp) -Web page content markup
 * [CSS](https://www.w3schools.com/css/default.asp) -Markup layout design
