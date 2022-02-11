@@ -10,7 +10,7 @@
     "cookie-parser": "^1.4.4",
     "eslint-config-prettier": "^4.1.0",
     "express": "^4.16.4",
-    "express-handlebars": "^3.0.2",
+    "express-handlebars": "^5.3.1",
     "handlebars-intl": "^1.1.2",
     "jsonwebtoken": "^8.5.0",
     "mysql": "^2.16.0",
